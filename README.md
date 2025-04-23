@@ -1,35 +1,8 @@
-<head>
-<style>
-  .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-  .title {
-    font-weight: bolder;
-    font-size: 40pt;
-  }
-  .title.maroon {
-    color: #ea999c;
-  }
-  .title.mauve {
-    color: #ca9ee6;
-  }
-  .title.teal {
-    color: #81c8be;
-  }
-  .title.blue {
-    color: #8caaee;
-  }
-</style>
-</head>
-
-<div class="container">
-  <p class="title maroon">&lt;</p>
-  <p class="title mauve">?</p>
-  <p class="title teal">:</p>
-  <p class="title blue">&gt;</p>
+<div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+  <p style="font-weight: bold; font-size: 40pt; color: #ea999c">&lt;</p>
+  <p style="font-weight: bold; font-size: 40pt; color: #ca9ee6">?</p>
+  <p style="font-weight: bold; font-size: 40pt; color: #81c8be">:</p>
+  <p style="font-weight: bold; font-size: 40pt; color: #8caaee">&gt;</p>
 </div>
 
 # 👾 What is TsTs
