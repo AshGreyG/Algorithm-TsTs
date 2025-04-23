@@ -1,3 +1,14 @@
+<style>
+  .title {
+    font-weight: bolder;
+    font-size: 40pt;
+  }
+</style>
+
+<div align="center">
+  <p class="title">&lt;:?&gt;</p>
+</div>
+
 # 👾 What is TsTs
 
 TsTs (TypeScript Type System) is a turing-complete ~~language~~ that can do anything other 
