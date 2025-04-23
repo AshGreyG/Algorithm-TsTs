@@ -1,12 +1,35 @@
+<head>
 <style>
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
   .title {
     font-weight: bolder;
     font-size: 40pt;
   }
+  .title.maroon {
+    color: #ea999c;
+  }
+  .title.mauve {
+    color: #ca9ee6;
+  }
+  .title.teal {
+    color: #81c8be;
+  }
+  .title.blue {
+    color: #8caaee;
+  }
 </style>
+</head>
 
-<div align="center">
-  <p class="title">&lt;:?&gt;</p>
+<div class="container">
+  <p class="title maroon">&lt;</p>
+  <p class="title mauve">?</p>
+  <p class="title teal">:</p>
+  <p class="title blue">&gt;</p>
 </div>
 
 # 👾 What is TsTs
