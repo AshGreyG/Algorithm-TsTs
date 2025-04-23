@@ -1,10 +1,5 @@
 <div align="center">
-  <svg width="120" height="100">
-    <text x="0" y="50" fill="#ea999c" font-size="40pt" font-weight="bold"><</text>
-    <text x="35" y="50" fill="#ca9ee6" font-size="40pt" font-weight="bold">?</text>
-    <text x="65" y="50" fill="#81c8be" font-size="40pt" font-weight="bold">:</text>
-    <text x="90" y="50" fill="#8caaee" font-size="40pt" font-weight="bold">></text>
-  </svg>
+  <h1>&lt;:?&gt;</h1>
 </div>
 
 # 👾 What is TsTs
