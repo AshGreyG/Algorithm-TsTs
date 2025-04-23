@@ -1,8 +1,10 @@
-<div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-  <p style="font-weight: bold; font-size: 40pt; color: #ea999c">&lt;</p>
-  <p style="font-weight: bold; font-size: 40pt; color: #ca9ee6">?</p>
-  <p style="font-weight: bold; font-size: 40pt; color: #81c8be">:</p>
-  <p style="font-weight: bold; font-size: 40pt; color: #8caaee">&gt;</p>
+<div align="center">
+  <svg width="120" height="100">
+    <text x="0" y="50" fill="#ea999c" font-size="40pt" font-weight="bold"><</text>
+    <text x="35" y="50" fill="#ca9ee6" font-size="40pt" font-weight="bold">?</text>
+    <text x="65" y="50" fill="#81c8be" font-size="40pt" font-weight="bold">:</text>
+    <text x="90" y="50" fill="#8caaee" font-size="40pt" font-weight="bold">></text>
+  </svg>
 </div>
 
 # 👾 What is TsTs
