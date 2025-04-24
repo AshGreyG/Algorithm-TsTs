@@ -1,0 +1,29 @@
+{
+  "name": "algorithm-tsts",
+  "version": "1.0.0",
+  "description": "Useful algorithms implemented by tsts (TypeScript Type System)",
+  "keywords": [
+    "typescript",
+    "algorithm",
+    "type-system"
+  ],
+  "homepage": "https://github.com/AshGreyG/Algorithm-TsTs#readme",
+  "bugs": {
+    "url": "https://github.com/AshGreyG/Algorithm-TsTs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AshGreyG/Algorithm-TsTs.git"
+  },
+  "license": "MIT",
+  "author": "AshGreyG",
+  "type": "commonjs",
+  "main": "index.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
