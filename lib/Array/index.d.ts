@@ -1,3 +1,5 @@
+import Integer from "../Integer";
+
 declare namespace Array {
 
 /**
@@ -20,9 +22,11 @@ export type CreateArrayFromLength<
   T extends any = number, 
   Count extends T[] = []
 >
-  = Count["length"] extends L
-    ? Count
-    : CreateArrayFromLength<L, T, [...Count, T]>;
+  = Integer.IsNegative<L> extends true
+    ? []
+    : Count["length"] extends L
+      ? Count
+      : CreateArrayFromLength<L, T, [...Count, T]>;
 
 }
 

@@ -22,11 +22,11 @@ export type Opposite<A extends number>
         ? OA
         : never;
 
-type _PositiveMinus<A extends number, B extends number, Count extends number[] = []>
+type _PositiveSub<A extends number, B extends number, Count extends number[] = []>
   = A extends B
     ? Count["length"]
     : Array.CreateArrayFromLength<A> extends [...infer Rest, infer E]
-      ? _PositiveMinus<Rest["length"], B, [...Count, Rest["length"]]>
+      ? _PositiveSub<Rest["length"], B, [...Count, Rest["length"]]>
       : "A is less than B";
 
 export type Less<A extends number, B extends number>
@@ -45,7 +45,7 @@ export type Less<A extends number, B extends number>
           ? false
           : IsZero<B> extends true
             ? false
-            : _PositiveMinus<A, B> extends "A is less than B"
+            : _PositiveSub<A, B> extends "A is less than B"
               ? true
               : false
         : IsZero<A> extends true
@@ -61,19 +61,21 @@ export type Great<A extends number, B extends number>
       ? false
       : true;
 
-export type Equal<A extends number, B extends number> = A extends B ? true : false;
+export type Eq<A extends number, B extends number> = A extends B ? true : false;
+
+export type Neq<A extends number, B extends number> = A extends B ? false : true;
 
 export type LessEq<A extends number, B extends number>
   = Less<A, B> extends true
     ? true
-    : Equal<A, B> extends true
+    : Eq<A, B> extends true
       ? true
       : false
 
 export type GreatEq<A extends number, B extends number>
   = Great<A, B> extends true
     ? true
-    : Equal<A, B> extends true
+    : Eq<A, B> extends true
       ? true
       : false;
 
@@ -85,9 +87,9 @@ export type Add<A extends number, B extends number>
         ? [...Array.CreateArrayFromLength<A>, ...Array.CreateArrayFromLength<B>]["length"]
         : IsNegative<B> extends true
           ? Great<A, Opposite<B>> extends true
-            ? _PositiveMinus<A, Opposite<B>>
-            : _PositiveMinus<Opposite<B>, A> extends number
-              ? Opposite<_PositiveMinus<Opposite<B>, A>>
+            ? _PositiveSub<A, Opposite<B>>
+            : _PositiveSub<Opposite<B>, A> extends number
+              ? Opposite<_PositiveSub<Opposite<B>, A>>
               : never // Impossible
           : A
       : IsNegative<A> extends true
@@ -97,24 +99,24 @@ export type Add<A extends number, B extends number>
             : never
           : IsPositive<B> extends true
             ? Less<Opposite<A>, B> extends true
-              ? _PositiveMinus<B, Opposite<A>>
-              : _PositiveMinus<Opposite<A>, B> extends number
-                ? Opposite<_PositiveMinus<Opposite<A>, B>>
+              ? _PositiveSub<B, Opposite<A>>
+              : _PositiveSub<Opposite<A>, B> extends number
+                ? Opposite<_PositiveSub<Opposite<A>, B>>
                 : never // Impossible
             : A
         : B;
 
 export type Inc<A extends number> = Add<A, 1>;
 
-export type Minus<A extends number, B extends number, Count extends number[] = []>
+export type Sub<A extends number, B extends number, Count extends number[] = []>
   = A extends B
     ? Count["length"]
     : IsPositive<A> extends true
       ? IsPositive<B> extends true
         ? Great<A, B> extends true
-          ? _PositiveMinus<A, B>
-          : _PositiveMinus<B, A> extends number
-            ? Opposite<_PositiveMinus<B, A>>
+          ? _PositiveSub<A, B>
+          : _PositiveSub<B, A> extends number
+            ? Opposite<_PositiveSub<B, A>>
             : never
         : IsNegative<B> extends true
           ? Add<A, Opposite<B>>
@@ -122,16 +124,16 @@ export type Minus<A extends number, B extends number, Count extends number[] = [
       : IsNegative<A> extends true
         ? IsNegative<B> extends true
           ? Great<A, B> extends true
-            ? _PositiveMinus<Opposite<B>, Opposite<A>>
-            : _PositiveMinus<Opposite<A>, Opposite<B>> extends number
-              ? Opposite<_PositiveMinus<Opposite<A>, Opposite<B>>>
+            ? _PositiveSub<Opposite<B>, Opposite<A>>
+            : _PositiveSub<Opposite<A>, Opposite<B>> extends number
+              ? Opposite<_PositiveSub<Opposite<A>, Opposite<B>>>
               : never
           : IsPositive<B> extends true
             ? Add<A, Opposite<B>>
             : A
         : Opposite<B>;
 
-export type Dec<A extends number> = Minus<A, 1>;
+export type Dec<A extends number> = Sub<A, 1>;
 
 export type Multiply<A extends number, B extends number, Count extends number = 0>
   = IsPositive<A> extends true
