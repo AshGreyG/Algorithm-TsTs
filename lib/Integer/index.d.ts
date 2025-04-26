@@ -27,9 +27,9 @@ type _PositiveSub<A extends number, B extends number, Count extends number[] = [
     ? Count["length"]
     : Array.CreateArrayFromLength<A> extends [...infer Rest, infer E]
       ? _PositiveSub<Rest["length"], B, [...Count, Rest["length"]]>
-      : "A is less than B";
+      : "A is Lower than B";
 
-export type Less<A extends number, B extends number>
+export type Lower<A extends number, B extends number>
   = A extends B
     ? false
     : IsNegative<A> extends true
@@ -37,7 +37,7 @@ export type Less<A extends number, B extends number>
         ? true
         : IsZero<B> extends true
           ? true
-          : Less<Opposite<A>, Opposite<B>> extends true
+          : Lower<Opposite<A>, Opposite<B>> extends true
             ? false
             : true
       : IsPositive<A> extends true
@@ -45,7 +45,7 @@ export type Less<A extends number, B extends number>
           ? false
           : IsZero<B> extends true
             ? false
-            : _PositiveSub<A, B> extends "A is less than B"
+            : _PositiveSub<A, B> extends "A is Lower than B"
               ? true
               : false
         : IsZero<A> extends true
@@ -54,10 +54,10 @@ export type Less<A extends number, B extends number>
             : true
           : never;
 
-export type Great<A extends number, B extends number>
+export type Greater<A extends number, B extends number>
   = A extends B
     ? false
-    : Less<A, B> extends true
+    : Lower<A, B> extends true
       ? false
       : true;
 
@@ -65,15 +65,15 @@ export type Eq<A extends number, B extends number> = A extends B ? true : false;
 
 export type Neq<A extends number, B extends number> = A extends B ? false : true;
 
-export type LessEq<A extends number, B extends number>
-  = Less<A, B> extends true
+export type LowerEq<A extends number, B extends number>
+  = Lower<A, B> extends true
     ? true
     : Eq<A, B> extends true
       ? true
       : false
 
-export type GreatEq<A extends number, B extends number>
-  = Great<A, B> extends true
+export type GreaterEq<A extends number, B extends number>
+  = Greater<A, B> extends true
     ? true
     : Eq<A, B> extends true
       ? true
@@ -86,7 +86,7 @@ export type Add<A extends number, B extends number>
       ? IsPositive<B> extends true
         ? [...Array.CreateArrayFromLength<A>, ...Array.CreateArrayFromLength<B>]["length"]
         : IsNegative<B> extends true
-          ? Great<A, Opposite<B>> extends true
+          ? Greater<A, Opposite<B>> extends true
             ? _PositiveSub<A, Opposite<B>>
             : _PositiveSub<Opposite<B>, A> extends number
               ? Opposite<_PositiveSub<Opposite<B>, A>>
@@ -98,7 +98,7 @@ export type Add<A extends number, B extends number>
             ? Opposite<[...Array.CreateArrayFromLength<Opposite<A>>, ...Array.CreateArrayFromLength<Opposite<B>>]["length"]>
             : never
           : IsPositive<B> extends true
-            ? Less<Opposite<A>, B> extends true
+            ? Lower<Opposite<A>, B> extends true
               ? _PositiveSub<B, Opposite<A>>
               : _PositiveSub<Opposite<A>, B> extends number
                 ? Opposite<_PositiveSub<Opposite<A>, B>>
@@ -113,7 +113,7 @@ export type Sub<A extends number, B extends number, Count extends number[] = []>
     ? Count["length"]
     : IsPositive<A> extends true
       ? IsPositive<B> extends true
-        ? Great<A, B> extends true
+        ? Greater<A, B> extends true
           ? _PositiveSub<A, B>
           : _PositiveSub<B, A> extends number
             ? Opposite<_PositiveSub<B, A>>
@@ -123,7 +123,7 @@ export type Sub<A extends number, B extends number, Count extends number[] = []>
           : A
       : IsNegative<A> extends true
         ? IsNegative<B> extends true
-          ? Great<A, B> extends true
+          ? Greater<A, B> extends true
             ? _PositiveSub<Opposite<B>, Opposite<A>>
             : _PositiveSub<Opposite<A>, Opposite<B>> extends number
               ? Opposite<_PositiveSub<Opposite<A>, Opposite<B>>>
@@ -159,6 +159,77 @@ export type Multiply<A extends number, B extends number, Count extends number = 
       : IsZero<A> extends true
         ? 0
         : never;
+
+export type Divide<
+  A extends number, 
+  B extends number, 
+  Count extends number = 0, 
+  Accumulate extends number = 0
+>
+  = IsPositive<A> extends true
+    ? IsPositive<B> extends true
+      ? Add<B, Accumulate> extends number
+        ? Greater<Add<B, Accumulate>, A> extends true
+          ? Count
+          : Divide<A, B, Inc<Count>, Add<B, Accumulate>>
+        : never // Impossible
+      : IsNegative<B> extends true
+        ? Opposite<Divide<A, Opposite<B>>>
+        : IsZero<B> extends true
+          ? never
+          : never
+    : IsNegative<A> extends true
+      ? IsNegative<B> extends true
+        ? Divide<Opposite<A>, Opposite<B>>
+        : IsPositive<B> extends true
+          ? Opposite<Divide<Opposite<A>, B>>
+          : IsZero<B> extends true
+            ? never
+            : never
+      : IsZero<A> extends true
+        ? 0
+        : never;
+
+export type Mod<
+  A extends number, 
+  B extends number, 
+  Count extends number = 0, 
+  Accumulate extends number = 0
+>
+  = IsPositive<A> extends true
+    ? IsPositive<B> extends true
+      ? Add<B, Accumulate> extends number
+        ? Greater<Add<B, Accumulate>, A> extends true
+          ? Sub<A, Accumulate>
+          : Divide<A, B, Inc<Count>, Add<B, Accumulate>>
+        : never // Impossible
+      : IsNegative<B> extends true
+        ? Opposite<Divide<A, Opposite<B>>>
+        : IsZero<B> extends true
+          ? never
+          : never
+    : IsNegative<A> extends true
+      ? IsNegative<B> extends true
+        ? Divide<Opposite<A>, Opposite<B>>
+        : IsPositive<B> extends true
+          ? Opposite<Divide<Opposite<A>, B>>
+          : IsZero<B> extends true
+            ? never
+            : never
+      : IsZero<A> extends true
+        ? 0
+        : never;
+
+export type IsOdd<A extends number> 
+  = `${A}` extends `${infer Rest}${"1" | "3" | "5" | "7" | "9"}`
+    ? true
+    : false;
+
+export type IsEven<A extends number>
+  = `${A}` extends `${infer Rest}${"0" | "2" | "4" | "6" | "8"}`
+    ? true
+    : false;
+
 
 }
 

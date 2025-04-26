@@ -8,6 +8,24 @@ import Integer from "../lib/Integer";
 import { Equal, Expect } from "../utils";
 
 type CaseLibInteger = [
+  // Integer.Mod
+  Expect<Equal<Integer.Mod<2, 2>, 0>>,
+
+  // Integer.Greater
+  Expect<Equal<Integer.Greater<2, 1>, true>>,
+  Expect<Equal<Integer.Greater<1, 2>, false>>,
+  Expect<Equal<Integer.Greater<2, -1>, true>>,
+  Expect<Equal<Integer.Greater<-1, 2>, false>>,
+  Expect<Equal<Integer.Greater<-3, -2>, false>>,
+  Expect<Equal<Integer.Greater<-2, -3>, true>>,
+  Expect<Equal<Integer.Greater<-1, 0>, false>>,
+  Expect<Equal<Integer.Greater<2, 0>, true>>,
+  Expect<Equal<Integer.Greater<0, 3>, false>>,
+  Expect<Equal<Integer.Greater<0, -3>, true>>,
+  Expect<Equal<Integer.Greater<0, 0>, false>>,
+  Expect<Equal<Integer.Greater<2, 2>, false>>,
+  Expect<Equal<Integer.Greater<-2, -2>, false>>,
+
   // Integer.Add
   Expect<Equal<Integer.Add<2, 3>, 5>>,
   Expect<Equal<Integer.Add<-2, 2>, 0>>,
@@ -26,25 +44,18 @@ type CaseLibInteger = [
   Expect<Equal<Integer.IsPositive<0>, false>>,
   Expect<Equal<Integer.IsPositive<9>, true>>,
 
+  // Integer.IsOdd
+  Expect<Equal<Integer.IsOdd<1>, true>>,
+  Expect<Equal<Integer.IsOdd<2>, false>>,
+  Expect<Equal<Integer.IsOdd<0>, false>>,
+  Expect<Equal<Integer.IsOdd<-3>, true>>,
+  Expect<Equal<Integer.IsOdd<-19>, true>>,
+  Expect<Equal<Integer.IsOdd<20>, false>>,
+
   // Integer.IsNegative
   Expect<Equal<Integer.IsNegative<-2>, true>>,
   Expect<Equal<Integer.IsNegative<0>, false>>,
   Expect<Equal<Integer.IsNegative<9>, false>>,
-
-  // Integer.Great
-  Expect<Equal<Integer.Great<2, 1>, true>>,
-  Expect<Equal<Integer.Great<1, 2>, false>>,
-  Expect<Equal<Integer.Great<2, -1>, true>>,
-  Expect<Equal<Integer.Great<-1, 2>, false>>,
-  Expect<Equal<Integer.Great<-3, -2>, false>>,
-  Expect<Equal<Integer.Great<-2, -3>, true>>,
-  Expect<Equal<Integer.Great<-1, 0>, false>>,
-  Expect<Equal<Integer.Great<2, 0>, true>>,
-  Expect<Equal<Integer.Great<0, 3>, false>>,
-  Expect<Equal<Integer.Great<0, -3>, true>>,
-  Expect<Equal<Integer.Great<0, 0>, false>>,
-  Expect<Equal<Integer.Great<2, 2>, false>>,
-  Expect<Equal<Integer.Great<-2, -2>, false>>,
 
   // Integer.IsZero
   Expect<Equal<Integer.IsZero<-2>, false>>,
@@ -65,21 +76,6 @@ type CaseLibInteger = [
   Expect<Equal<Integer.Sub<2, 2>, 0>>,
   Expect<Equal<Integer.Sub<-3, -3>, 0>>,
 
-  // Integer.Less
-  Expect<Equal<Integer.Less<2, 1>, false>>,
-  Expect<Equal<Integer.Less<1, 2>, true>>,
-  Expect<Equal<Integer.Less<2, -1>, false>>,
-  Expect<Equal<Integer.Less<-1, 2>, true>>,
-  Expect<Equal<Integer.Less<-3, -2>, true>>,
-  Expect<Equal<Integer.Less<-2, -3>, false>>,
-  Expect<Equal<Integer.Less<-1, 0>, true>>,
-  Expect<Equal<Integer.Less<2, 0>, false>>,
-  Expect<Equal<Integer.Less<0, 3>, true>>,
-  Expect<Equal<Integer.Less<0, -3>, false>>,
-  Expect<Equal<Integer.Less<0, 0>, false>>,
-  Expect<Equal<Integer.Less<2, 2>, false>>,
-  Expect<Equal<Integer.Less<-2, -2>, false>>,
-
   // Integer.Opposite
   Expect<Equal<Integer.Opposite<-2>, 2>>,
   Expect<Equal<Integer.Opposite<0>, 0>>,
@@ -90,21 +86,6 @@ type CaseLibInteger = [
   Expect<Equal<Integer.Inc<0>, 1>>,
   Expect<Equal<Integer.Inc<-1>, 0>>,
   Expect<Equal<Integer.Inc<-30>, -29>>,
-
-  // Integer.GreatEq
-  Expect<Equal<Integer.GreatEq<2, 1>, true>>,
-  Expect<Equal<Integer.GreatEq<1, 2>, false>>,
-  Expect<Equal<Integer.GreatEq<2, -1>, true>>,
-  Expect<Equal<Integer.GreatEq<-1, 2>, false>>,
-  Expect<Equal<Integer.GreatEq<-3, -2>, false>>,
-  Expect<Equal<Integer.GreatEq<-2, -3>, true>>,
-  Expect<Equal<Integer.GreatEq<-1, 0>, false>>,
-  Expect<Equal<Integer.GreatEq<2, 0>, true>>,
-  Expect<Equal<Integer.GreatEq<0, 3>, false>>,
-  Expect<Equal<Integer.GreatEq<0, -3>, true>>,
-  Expect<Equal<Integer.GreatEq<0, 0>, true>>,
-  Expect<Equal<Integer.GreatEq<2, 2>, true>>,
-  Expect<Equal<Integer.GreatEq<-2, -2>, true>>,
 
   // Integer.Neq
   Expect<Equal<Integer.Neq<2, 1>, true>>,
@@ -121,21 +102,6 @@ type CaseLibInteger = [
   Expect<Equal<Integer.Neq<2, 2>, false>>,
   Expect<Equal<Integer.Neq<-2, -2>, false>>,
 
-  // Integer.LessEq
-  Expect<Equal<Integer.LessEq<2, 1>, false>>,
-  Expect<Equal<Integer.LessEq<1, 2>, true>>,
-  Expect<Equal<Integer.LessEq<2, -1>, false>>,
-  Expect<Equal<Integer.LessEq<-1, 2>, true>>,
-  Expect<Equal<Integer.LessEq<-3, -2>, true>>,
-  Expect<Equal<Integer.LessEq<-2, -3>, false>>,
-  Expect<Equal<Integer.LessEq<-1, 0>, true>>,
-  Expect<Equal<Integer.LessEq<2, 0>, false>>,
-  Expect<Equal<Integer.LessEq<0, 3>, true>>,
-  Expect<Equal<Integer.LessEq<0, -3>, false>>,
-  Expect<Equal<Integer.LessEq<0, 0>, true>>,
-  Expect<Equal<Integer.LessEq<2, 2>, true>>,
-  Expect<Equal<Integer.LessEq<-2, -2>, true>>,
-
   // Integer.Eq
   Expect<Equal<Integer.Eq<2, 1>, false>>,
   Expect<Equal<Integer.Eq<1, 2>, false>>,
@@ -150,6 +116,69 @@ type CaseLibInteger = [
   Expect<Equal<Integer.Eq<0, 0>, true>>,
   Expect<Equal<Integer.Eq<2, 2>, true>>,
   Expect<Equal<Integer.Eq<-2, -2>, true>>,
+
+  // Integer.GreaterEq
+  Expect<Equal<Integer.GreaterEq<2, 1>, true>>,
+  Expect<Equal<Integer.GreaterEq<1, 2>, false>>,
+  Expect<Equal<Integer.GreaterEq<2, -1>, true>>,
+  Expect<Equal<Integer.GreaterEq<-1, 2>, false>>,
+  Expect<Equal<Integer.GreaterEq<-3, -2>, false>>,
+  Expect<Equal<Integer.GreaterEq<-2, -3>, true>>,
+  Expect<Equal<Integer.GreaterEq<-1, 0>, false>>,
+  Expect<Equal<Integer.GreaterEq<2, 0>, true>>,
+  Expect<Equal<Integer.GreaterEq<0, 3>, false>>,
+  Expect<Equal<Integer.GreaterEq<0, -3>, true>>,
+  Expect<Equal<Integer.GreaterEq<0, 0>, true>>,
+  Expect<Equal<Integer.GreaterEq<2, 2>, true>>,
+  Expect<Equal<Integer.GreaterEq<-2, -2>, true>>,
+
+  // Integer.Divide
+  Expect<Equal<Integer.Divide<2, 3>, 0>>,
+  Expect<Equal<Integer.Divide<4, 2>, 2>>,
+  Expect<Equal<Integer.Divide<9, -3>, -3>>,
+  Expect<Equal<Integer.Divide<9, -2>, -4>>,
+  Expect<Equal<Integer.Divide<9, 0>, never>>,
+  Expect<Equal<Integer.Divide<-2, -3>, 0>>,
+  Expect<Equal<Integer.Divide<-4, 2>, -2>>,
+  Expect<Equal<Integer.Divide<4, 4>, 1>>,
+  Expect<Equal<Integer.Divide<4, -4>, -1>>,
+  Expect<Equal<Integer.Divide<-4, -4>, 1>>,
+
+  // Integer.LowerEq
+  Expect<Equal<Integer.LowerEq<2, 1>, false>>,
+  Expect<Equal<Integer.LowerEq<1, 2>, true>>,
+  Expect<Equal<Integer.LowerEq<2, -1>, false>>,
+  Expect<Equal<Integer.LowerEq<-1, 2>, true>>,
+  Expect<Equal<Integer.LowerEq<-3, -2>, true>>,
+  Expect<Equal<Integer.LowerEq<-2, -3>, false>>,
+  Expect<Equal<Integer.LowerEq<-1, 0>, true>>,
+  Expect<Equal<Integer.LowerEq<2, 0>, false>>,
+  Expect<Equal<Integer.LowerEq<0, 3>, true>>,
+  Expect<Equal<Integer.LowerEq<0, -3>, false>>,
+  Expect<Equal<Integer.LowerEq<0, 0>, true>>,
+  Expect<Equal<Integer.LowerEq<2, 2>, true>>,
+  Expect<Equal<Integer.LowerEq<-2, -2>, true>>,
+
+  // Integer.IsEven
+  Expect<Equal<Integer.IsEven<1>, false>>,
+  Expect<Equal<Integer.IsEven<0>, true>>,
+  Expect<Equal<Integer.IsEven<-22>, true>>,
+  Expect<Equal<Integer.IsEven<19>, false>>,
+
+  // Integer.Lower
+  Expect<Equal<Integer.Lower<2, 1>, false>>,
+  Expect<Equal<Integer.Lower<1, 2>, true>>,
+  Expect<Equal<Integer.Lower<2, -1>, false>>,
+  Expect<Equal<Integer.Lower<-1, 2>, true>>,
+  Expect<Equal<Integer.Lower<-3, -2>, true>>,
+  Expect<Equal<Integer.Lower<-2, -3>, false>>,
+  Expect<Equal<Integer.Lower<-1, 0>, true>>,
+  Expect<Equal<Integer.Lower<2, 0>, false>>,
+  Expect<Equal<Integer.Lower<0, 3>, true>>,
+  Expect<Equal<Integer.Lower<0, -3>, false>>,
+  Expect<Equal<Integer.Lower<0, 0>, false>>,
+  Expect<Equal<Integer.Lower<2, 2>, false>>,
+  Expect<Equal<Integer.Lower<-2, -2>, false>>,
 
   // Integer.Dec
   Expect<Equal<Integer.Dec<2>, 1>>,

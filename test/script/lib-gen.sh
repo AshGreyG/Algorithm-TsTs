@@ -8,18 +8,26 @@ declare -A test_cases=(
   ["Integer.IsPositive"]="-2:false 0:false 9:true"
   ["Integer.IsZero"]="-2:false 0:true 9:false"
   ["Integer.Opposite"]="-2:2 0:0 20:-20"
-  ["Integer.Less"]="2|1:false 1|2:true 2|-1:false -1|2:true -3|-2:true -2|-3:false -1|0:true 2|0:false 0|3:true 0|-3:false 0|0:false 2|2:false -2|-2:false"
-  ["Integer.Great"]="2|1:true 1|2:false 2|-1:true -1|2:false -3|-2:false -2|-3:true -1|0:false 2|0:true 0|3:false 0|-3:true 0|0:false 2|2:false -2|-2:false"
+  ["Integer.Lower"]="2|1:false 1|2:true 2|-1:false -1|2:true -3|-2:true -2|-3:false -1|0:true 2|0:false 0|3:true 0|-3:false 0|0:false 2|2:false -2|-2:false"
+  ["Integer.Greater"]="2|1:true 1|2:false 2|-1:true -1|2:false -3|-2:false -2|-3:true -1|0:false 2|0:true 0|3:false 0|-3:true 0|0:false 2|2:false -2|-2:false"
   ["Integer.Eq"]="2|1:false 1|2:false 2|-1:false -1|2:false -3|-2:false -2|-3:false -1|0:false 2|0:false 0|3:false 0|-3:false 0|0:true 2|2:true -2|-2:true"
   ["Integer.Neq"]="2|1:true 1|2:true 2|-1:true -1|2:true -3|-2:true -2|-3:true -1|0:true 2|0:true 0|3:true 0|-3:true 0|0:false 2|2:false -2|-2:false"
-  ["Integer.LessEq"]="2|1:false 1|2:true 2|-1:false -1|2:true -3|-2:true -2|-3:false -1|0:true 2|0:false 0|3:true 0|-3:false 0|0:true 2|2:true -2|-2:true"
-  ["Integer.GreatEq"]="2|1:true 1|2:false 2|-1:true -1|2:false -3|-2:false -2|-3:true -1|0:false 2|0:true 0|3:false 0|-3:true 0|0:true 2|2:true -2|-2:true"
+  ["Integer.LowerEq"]="2|1:false 1|2:true 2|-1:false -1|2:true -3|-2:true -2|-3:false -1|0:true 2|0:false 0|3:true 0|-3:false 0|0:true 2|2:true -2|-2:true"
+  ["Integer.GreaterEq"]="2|1:true 1|2:false 2|-1:true -1|2:false -3|-2:false -2|-3:true -1|0:false 2|0:true 0|3:false 0|-3:true 0|0:true 2|2:true -2|-2:true"
   ["Integer.Add"]="2|3:5 -2|2:0 -2|-6:-8 3|-3:0 3|-2:1 -2|1:-1 0|0:0 -2|0:-2 2|0:2 0|20:20 0|-30:-30"
   ["Integer.Inc"]="2:3 0:1 -1:0 -30:-29"
   ["Integer.Sub"]="2|3:-1 3|2:1 -2|3:-5 -2|-3:1 -9|-2:-7 2|0:2 -3|0:-3 0|2:-2 0|-3:3 0|0:0 2|2:0 -3|-3:0"
   ["Integer.Dec"]="2:1 0:-1 1:0 -3:-4"
+  ["Integer.Divide"]="2|3:0 4|2:2 9|-3:-3 9|-2:-4 9|0:never -2|-3:0 -4|2:-2 4|4:1 4|-4:-1 -4|-4:1"
+  ["Integer.Mod"]="2|2:0"
+  ["Integer.IsOdd"]="1:true 2:false 0:false -3:true -19:true 20:false"
+  ["Integer.IsEven"]="1:false 0:true -22:true 19:false"
 
   ["Array.CreateArrayFromLength"]="2:[number,number] 3|string:[string,string,string] 0:[] -1:[]"
+
+  ["BigInteger.Lower"]="23|123:true"
+
+  ["String.Length"]="\"abs\":3 \"\":0 \"2222_2222_2222_2222_2222\":24"
 )
 
 function repeat {
