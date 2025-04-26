@@ -201,21 +201,17 @@ export type Mod<
       ? Add<B, Accumulate> extends number
         ? Greater<Add<B, Accumulate>, A> extends true
           ? Sub<A, Accumulate>
-          : Divide<A, B, Inc<Count>, Add<B, Accumulate>>
+          : Mod<A, B, Inc<Count>, Add<B, Accumulate>>
         : never // Impossible
       : IsNegative<B> extends true
         ? Opposite<Divide<A, Opposite<B>>>
-        : IsZero<B> extends true
-          ? never
-          : never
+        : never
     : IsNegative<A> extends true
       ? IsNegative<B> extends true
         ? Divide<Opposite<A>, Opposite<B>>
         : IsPositive<B> extends true
           ? Opposite<Divide<Opposite<A>, B>>
-          : IsZero<B> extends true
-            ? never
-            : never
+          : never
       : IsZero<A> extends true
         ? 0
         : never;
@@ -229,7 +225,6 @@ export type IsEven<A extends number>
   = `${A}` extends `${infer Rest}${"0" | "2" | "4" | "6" | "8"}`
     ? true
     : false;
-
 
 }
 

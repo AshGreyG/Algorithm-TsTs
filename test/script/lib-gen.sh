@@ -19,13 +19,13 @@ declare -A test_cases=(
   ["Integer.Sub"]="2|3:-1 3|2:1 -2|3:-5 -2|-3:1 -9|-2:-7 2|0:2 -3|0:-3 0|2:-2 0|-3:3 0|0:0 2|2:0 -3|-3:0"
   ["Integer.Dec"]="2:1 0:-1 1:0 -3:-4"
   ["Integer.Divide"]="2|3:0 4|2:2 9|-3:-3 9|-2:-4 9|0:never -2|-3:0 -4|2:-2 4|4:1 4|-4:-1 -4|-4:1"
-  ["Integer.Mod"]="2|2:0"
+  ["Integer.Mod"]="2|2:0 3|2:1 -3|-2:1 -3|2:-1 9|5:4"
   ["Integer.IsOdd"]="1:true 2:false 0:false -3:true -19:true 20:false"
   ["Integer.IsEven"]="1:false 0:true -22:true 19:false"
 
   ["Array.CreateArrayFromLength"]="2:[number,number] 3|string:[string,string,string] 0:[] -1:[]"
 
-  ["BigInteger.Lower"]="23|123:true"
+  ["BigInteger.Lower"]="23|123:true 23|23:false 1234|1235:true -123|90:true 123|-90:false 0|0:false -2|-2:false 12345|12345:false"
 
   ["String.Length"]="\"abs\":3 \"\":0 \"2222_2222_2222_2222_2222\":24"
 )

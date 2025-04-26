@@ -10,6 +10,10 @@ import { Equal, Expect } from "../utils";
 type CaseLibInteger = [
   // Integer.Mod
   Expect<Equal<Integer.Mod<2, 2>, 0>>,
+  Expect<Equal<Integer.Mod<3, 2>, 1>>,
+  Expect<Equal<Integer.Mod<-3, -2>, 1>>,
+  Expect<Equal<Integer.Mod<-3, 2>, -1>>,
+  Expect<Equal<Integer.Mod<9, 5>, 4>>,
 
   // Integer.Greater
   Expect<Equal<Integer.Greater<2, 1>, true>>,

@@ -10,5 +10,12 @@ import { Equal, Expect } from "../utils";
 type CaseLibBigInteger = [
   // BigInteger.Lower
   Expect<Equal<BigInteger.Lower<23, 123>, true>>,
+  Expect<Equal<BigInteger.Lower<23, 23>, false>>,
+  Expect<Equal<BigInteger.Lower<1234, 1235>, true>>,
+  Expect<Equal<BigInteger.Lower<-123, 90>, true>>,
+  Expect<Equal<BigInteger.Lower<123, -90>, false>>,
+  Expect<Equal<BigInteger.Lower<0, 0>, false>>,
+  Expect<Equal<BigInteger.Lower<-2, -2>, false>>,
+  Expect<Equal<BigInteger.Lower<12345, 12345>, false>>,
 
 ]
