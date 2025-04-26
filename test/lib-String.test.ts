@@ -8,9 +8,20 @@ import String from "../lib/String";
 import { Equal, Expect } from "../utils";
 
 type CaseLibString = [
+  // String.At
+  Expect<Equal<String.At<"123456789", 0>, "1">>,
+  Expect<Equal<String.At<"123456789", 2>, "3">>,
+  Expect<Equal<String.At<"123456789", -3>, never>>,
+  Expect<Equal<String.At<"123456789", 100>, never>>,
+
   // String.Length
   Expect<Equal<String.Length<"abs">, 3>>,
   Expect<Equal<String.Length<"">, 0>>,
   Expect<Equal<String.Length<"2222_2222_2222_2222_2222">, 24>>,
+
+  // String.Concat
+  Expect<Equal<String.Concat<["12","ab"]>, "12ab">>,
+  Expect<Equal<String.Concat<["love"]>, "love">>,
+  Expect<Equal<String.Concat<[]>, "">>,
 
 ]
