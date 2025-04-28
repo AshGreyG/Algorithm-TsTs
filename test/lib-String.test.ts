@@ -24,4 +24,27 @@ type CaseLibString = [
   Expect<Equal<String.Concat<["love"]>, "love">>,
   Expect<Equal<String.Concat<[]>, "">>,
 
+  // String.EndsWith
+  Expect<Equal<String.EndsWith<"What?", "?">, true>>,
+  Expect<Equal<String.EndsWith<"What?", "What?">, true>>,
+  Expect<Equal<String.EndsWith<"What?", "SoWhat?">, false>>,
+  Expect<Equal<String.EndsWith<"What?", "t?">, true>>,
+  Expect<Equal<String.EndsWith<"What?", "W?">, false>>,
+  Expect<Equal<String.EndsWith<"What?", "">, true>>,
+  Expect<Equal<String.EndsWith<"", "test">, false>>,
+  Expect<Equal<String.EndsWith<"", "">, true>>,
+  Expect<Equal<String.EndsWith<"What?", "?", 4>, true>>,
+  Expect<Equal<String.EndsWith<"What?", "t?", 3>, true>>,
+  Expect<Equal<String.EndsWith<"", "", 2>, true>>,
+
+  // String.SubString
+  Expect<Equal<String.SubString<"LoveYouHuaier">, "LoveYouHuaier">>,
+  Expect<Equal<String.SubString<"LoveYouHuaier", 4>, "YouHuaier">>,
+  Expect<Equal<String.SubString<"LoveYouHuaier", 4, 9>, "YouHu">>,
+  Expect<Equal<String.SubString<"LoveYouHuaier", 3, -2>, "eYouHuai">>,
+  Expect<Equal<String.SubString<"LoveYouHuaier", -7, -2>, "uHuai">>,
+  Expect<Equal<String.SubString<"LoveYouHuaier", 0, 0>, "">>,
+  Expect<Equal<String.SubString<"LoveYouHuaier", -1, -1>, "">>,
+  Expect<Equal<String.SubString<"LoveYouHuaier", 8, 7>, "">>,
+
 ]

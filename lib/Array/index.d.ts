@@ -5,9 +5,9 @@ declare namespace Array {
 /**
  * Type function to generate the array whose length equals to the identified length.
  * 
- * @template L The length of created array type.
- * @template T The type element of created array type.
- * @template Count The type to accumulate the type `T` as its element to generate
+ * @param L The length of created array type.
+ * @param T The type element of created array type.
+ * @param Count The type to accumulate the type `T` as its element to generate
  * the returned array type.
  * 
  * @example

@@ -50,9 +50,10 @@ export type EndsWith<S extends string, T extends string, Index extends number = 
     ? S extends `${infer Rest}${T}`
       ? true
       : false
-    : S extends SubString<S, Index>
+    : T extends SubString<S, Index>
       ? true
       : false;
+
 }
 
 export default String;
