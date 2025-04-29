@@ -11,7 +11,7 @@ type CaseLibString = [
   // String.At
   Expect<Equal<String.At<"123456789", 0>, "1">>,
   Expect<Equal<String.At<"123456789", 2>, "3">>,
-  Expect<Equal<String.At<"123456789", -3>, never>>,
+  Expect<Equal<String.At<"123456789", -3>, "7">>,
   Expect<Equal<String.At<"123456789", 100>, never>>,
 
   // String.Length

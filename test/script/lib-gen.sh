@@ -28,7 +28,7 @@ declare -A test_cases=(
   ["BigInteger.Lower"]="23|123:true 23|23:false 1234|1235:true -123|90:true 123|-90:false 0|0:false -2|-2:false 12345|12345:false"
 
   ["String.Length"]="\"abs\":3 \"\":0 \"2222_2222_2222_2222_2222\":24"
-  ["String.At"]="\"123456789\"|0:\"1\" \"123456789\"|2:\"3\" \"123456789\"|-3:never \"123456789\"|100:never"
+  ["String.At"]="\"123456789\"|0:\"1\" \"123456789\"|2:\"3\" \"123456789\"|-3:\"7\" \"123456789\"|100:never"
   ["String.Concat"]="[\"12\",\"ab\"]:\"12ab\" [\"love\"]:\"love\" []:\"\""
   ["String.SubString"]="\"LoveYouHuaier\":\"LoveYouHuaier\" \"LoveYouHuaier\"|4:\"YouHuaier\" \"LoveYouHuaier\"|4|9:\"YouHu\" \"LoveYouHuaier\"|3|-2:\"eYouHuai\" \"LoveYouHuaier\"|-7|-2:\"uHuai\" \"LoveYouHuaier\"|0|0:\"\" \"LoveYouHuaier\"|-1|-1:\"\" \"LoveYouHuaier\"|8|7:\"\""
   ["String.EndsWith"]="\"What?\"|\"?\":true \"What?\"|\"What?\":true \"What?\"|\"SoWhat?\":false \"What?\"|\"t?\":true \"What?\"|\"W?\":false \"What?\"|\"\":true \"\"|\"test\":false \"\"|\"\":true \"What?\"|\"?\"|4:true \"What?\"|\"t?\"|3:true \"\"|\"\"|2:true"

@@ -9,7 +9,9 @@ export type Length<S extends string, Count extends number = 0>
 
 export type At<S extends string, N extends number, Count extends number = 0>
   = Integer.Lower<N, 0> extends true
-    ? never
+    ? Integer.Add<N, Length<S>> extends number
+      ? At<S, Integer.Add<N, Length<S>>, Count>
+      : never
     : Count extends 0
       ? Integer.GreaterEq<N, Length<S>> extends true
         ? never
