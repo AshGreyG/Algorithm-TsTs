@@ -33,8 +33,8 @@ type CaseLibString = [
   Expect<Equal<String.EndsWith<"What?", "">, true>>,
   Expect<Equal<String.EndsWith<"", "test">, false>>,
   Expect<Equal<String.EndsWith<"", "">, true>>,
-  Expect<Equal<String.EndsWith<"What?", "?", 4>, true>>,
-  Expect<Equal<String.EndsWith<"What?", "t?", 3>, true>>,
+  Expect<Equal<String.EndsWith<"What?", "?", 5>, true>>,
+  Expect<Equal<String.EndsWith<"What?", "t?", 3>, false>>,
   Expect<Equal<String.EndsWith<"", "", 2>, true>>,
 
   // String.SubString

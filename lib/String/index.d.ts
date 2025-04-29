@@ -26,6 +26,13 @@ export type At<S extends string, N extends number, Count extends number = 0>
           : At<Rest, N, Integer.Inc<Count>>
         : never;
 
+export type CharAt<S extends string, N extends number>
+  = Integer.Lower<N, 0> extends true
+    ? ""
+    : Integer.GreaterEq<N, Length<S>> extends true
+      ? ""
+      : At<S, N>;
+
 export type Concat<Strings extends string[], Result extends string = "">
   = Strings extends [infer First extends string, ...infer Rest extends string[]]
     ? Concat<Rest, `${Result}${First}`>
@@ -47,14 +54,42 @@ export type SubString<
         : Result
       : SubString<S, Start, End, Integer.Inc<Count>, Result>;
 
-export type EndsWith<S extends string, T extends string, Index extends number = -1>
-  = Index extends -1
+export type EndsWith<S extends string, T extends string, Index extends number | null = null>
+  = Index extends null
     ? S extends `${infer Rest}${T}`
       ? true
       : false
-    : T extends SubString<S, Index>
-      ? true
-      : false;
+    : Index extends number // TypeScript type system cannot infer that Index extends number
+      ? Integer.Sub<Index, Length<T>> extends number
+        ? T extends SubString<S, Integer.Sub<Index, Length<T>>>
+          ? true
+          : false
+        : never
+      : never;
+
+export type IndexOf<
+  S extends string, 
+  Sub extends string, 
+  Index extends number | null = null,
+  Ptr extends number = 0,
+> = Index extends null
+  ? Integer.Add<Ptr, Length<Sub>> extends number
+    ? SubString<S, Ptr, Integer.Add<Ptr, Length<Sub>>> extends Sub
+      ? Ptr
+      : IndexOf<S, Sub, null, Integer.Inc<Ptr>>
+    : never
+  : Index extends number
+    ? Integer.IsNegative<Index> extends true
+      ? Integer.Add<Index, Length<S>> extends number
+        ? IndexOf<S, Sub, null, 0>
+        : never
+      : Index extends number
+        ? Integer.Greater<Index, Integer.Sub<Length<S>, Length<Sub>>> extends true
+          ? -1
+          : IndexOf<S, Sub, null, Index>
+        : never
+    : never;
+
 
 }
 
