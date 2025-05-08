@@ -90,6 +90,19 @@ export type IndexOf<
         : never
     : never;
 
+export type Includes<
+  S extends string, 
+  Sub extends string,
+  Index extends number | null = null
+> = Index extends null
+  ? S extends `${infer F}${Sub}${infer E}`
+    ? true
+    : false
+  : Index extends number
+    ? SubString<S, Index> extends `${infer F}${Sub}${infer E}`
+      ? true
+      : false
+    : never;
 
 }
 

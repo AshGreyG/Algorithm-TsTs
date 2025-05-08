@@ -47,4 +47,9 @@ type CaseLibString = [
   Expect<Equal<String.SubString<"LoveYouHuaier", -1, -1>, "">>,
   Expect<Equal<String.SubString<"LoveYouHuaier", 8, 7>, "">>,
 
+  // String.Includes
+  Expect<Equal<String.Includes<"AshGrey", "Ash">, true>>,
+  Expect<Equal<String.Includes<"AshGrey", "A">, true>>,
+  Expect<Equal<String.Includes<"AshGrey", "a">, false>>,
+
 ]
