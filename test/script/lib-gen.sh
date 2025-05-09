@@ -32,7 +32,7 @@ declare -A test_cases=(
   ["String.Concat"]="[\"12\",\"ab\"]:\"12ab\" [\"love\"]:\"love\" []:\"\""
   ["String.SubString"]="\"LoveYouHuaier\":\"LoveYouHuaier\" \"LoveYouHuaier\"|4:\"YouHuaier\" \"LoveYouHuaier\"|4|9:\"YouHu\" \"LoveYouHuaier\"|3|-2:\"eYouHuai\" \"LoveYouHuaier\"|-7|-2:\"uHuai\" \"LoveYouHuaier\"|0|0:\"\" \"LoveYouHuaier\"|-1|-1:\"\" \"LoveYouHuaier\"|8|7:\"\""
   ["String.EndsWith"]="\"What?\"|\"?\":true \"What?\"|\"What?\":true \"What?\"|\"SoWhat?\":false \"What?\"|\"t?\":true \"What?\"|\"W?\":false \"What?\"|\"\":true \"\"|\"test\":false \"\"|\"\":true \"What?\"|\"?\"|5:true \"What?\"|\"t?\"|3:false \"\"|\"\"|2:true"
-  ["String.Includes"]="\"AshGrey\"|\"Ash\":true \"AshGrey\"|\"A\":true \"AshGrey\"|\"a\":false"
+  ["String.Includes"]="\"AshGrey\"|\"Ash\":true \"AshGrey\"|\"A\":true \"AshGrey\"|\"a\":false \"AshGrey\"|\"\":true \"AshGrey\"|\"Ash\"|0:true \"AshGrey\"|\"Ash\"|1:false \"AshGrey\"|\"Ash\"|-1:true"
 )
 
 function repeat {

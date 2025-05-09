@@ -99,9 +99,13 @@ export type Includes<
     ? true
     : false
   : Index extends number
-    ? SubString<S, Index> extends `${infer F}${Sub}${infer E}`
-      ? true
-      : false
+    ? Integer.IsNegative<Index> extends true
+      ? S extends `${infer F}${Sub}${infer E}`
+        ? true
+        : false
+      : SubString<S, Index> extends `${infer F}${Sub}${infer E}`
+        ? true
+        : false
     : never;
 
 }
