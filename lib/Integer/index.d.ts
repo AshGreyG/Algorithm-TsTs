@@ -2,6 +2,12 @@ import Array from "../Array";
 
 declare namespace Integer {
 
+/** 
+ * The behavior of this method is same with JavaScript `Number.prototype.toString`, but this
+ * method doesn't support an optional `radix` type parameter.
+ */
+export type ToString<A extends number> = `${A}`;
+
 export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends number}` ? true : false;
 
 export type IsPositive<A extends number>

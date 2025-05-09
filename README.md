@@ -19,3 +19,16 @@ type Opposite<A extends number>
 ```
 
 Recurse lets TsTs become a turing-complete language.
+
+# 🚨 Notice
+
+The `Integer` module of TsTs hasn't implemented methods of exponential numbers, hexadecimal
+, octal, and binary. It's only served for decimals. It's different from JavaScript number
+system, please be careful. Dealing with these numbers is **complicated** and **NOT worthful**.
+You only need them as string format.
+
+``` ts
+type A = Integer.ToString<12>;    // "12"
+type B = Integer.ToString<0x12>;  // "18", expected as "0x12" for me.
+type C = Integer.ToString<1e+10>; // "10000000000"
+```
