@@ -4,12 +4,40 @@ declare namespace Integer {
 
 /** 
  * The behavior of this method is same with JavaScript `Number.prototype.toString`, but this
- * method doesn't support an optional `radix` type parameter.
+ * method doesn't support an optional `radix` type parameter. Notice it doesn't support
+ * hexadecimal, octal and binary.
+ * 
+ * @param {number} A The number to convert to string.
+ * 
+ * @example
+ * type Num1 = Integer.ToString<3>;   // => "3"
+ * type Num2 = Integer.ToString<0>;   // => "0"
+ * type Num3 = Integer.ToString<-3>;  // => "-3"
  */
 export type ToString<A extends number> = `${A}`;
 
+/**
+ * This method checks if a number is negative.
+ * 
+ * @param {number} A The number to check if is negative.
+ * 
+ * @example
+ * type Is1 = Integer.IsNegative<1>;  // => false
+ * type Is2 = Integer.IsNegative<0>;  // => false
+ * type Is3 = Integer.IsNegative<-2>; // => true
+ */
 export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends number}` ? true : false;
 
+/**
+ * This method checks if a number is positive.
+ * 
+ * @param {number} A The number to check if is positive.
+ * 
+ * @example
+ * type Is1 = Integer.IsPositive<1>;  // => true
+ * type Is2 = Integer.IsPositive<0>;  // => false
+ * type Is3 = Integer.IsPositive<-2>; // => false
+ */
 export type IsPositive<A extends number>
   = IsNegative<A> extends false
     ? A extends 0
@@ -17,8 +45,28 @@ export type IsPositive<A extends number>
       : true
     : false;
 
+/**
+ * This method checks if a number is zero.
+ * 
+ * @param {number} A The number to check if is zero.
+ * 
+ * @example
+ * type Is1 = Integer.IsZero<1>;  // => false
+ * type Is2 = Integer.IsZero<0>;  // => true
+ * type Is3 = Integer.IsZero<-2>; // => false
+ */
 export type IsZero<A extends number> = A extends 0 ? true : false;
 
+/**
+ * This method gets the opposite of a number.
+ * 
+ * @param {number} A The number to be got opposite.
+ * 
+ * @example
+ * type Opposite1 = Integer.Opposite<3>;  // -3
+ * type Opposite2 = Integer.Opposite<0>;  // 0
+ * type Opposite3 = Integer.Opposite<-2>; // 2
+ */
 export type Opposite<A extends number>
   = IsZero<A> extends true
     ? 0
@@ -28,12 +76,29 @@ export type Opposite<A extends number>
         ? OA
         : never;
 
+/**
+ * This method is a internal helper to define the sub function `a - b`, but
+ * `a` cannot be less than `b`. It uses the tuple type in TsTs.
+ * 
+ * @param {number} A `a` in `a - b` expression.
+ * @param {number} B `b` in `a - b` expression.
+ * @param {number[]} [Count] The middle status type variable to store the 
+ * middle result, when `A extends B` is true, this method will return the
+ * `Count["length"]`, and that's the answer.
+ * 
+ * @example
+ * // Notice that this type is not exported, it's an internal helper method.
+ * // So the code below is just to show the function of this method.
+ * type Res1 = Integer._PositiveSub<3, 2>;  // 1
+ * type Res2 = Integer._PositiveSub<2, 2>;  // 0
+ * type Res3 = Integer._PositiveSub<1, 2>;  // "A is lower than B"
+ */
 type _PositiveSub<A extends number, B extends number, Count extends number[] = []>
   = A extends B
     ? Count["length"]
     : Array.CreateArrayFromLength<A> extends [...infer Rest, infer E]
       ? _PositiveSub<Rest["length"], B, [...Count, Rest["length"]]>
-      : "A is Lower than B";
+      : "A is lower than B";
 
 export type Lower<A extends number, B extends number>
   = A extends B
@@ -51,7 +116,7 @@ export type Lower<A extends number, B extends number>
           ? false
           : IsZero<B> extends true
             ? false
-            : _PositiveSub<A, B> extends "A is Lower than B"
+            : _PositiveSub<A, B> extends "A is lower than B"
               ? true
               : false
         : IsZero<A> extends true

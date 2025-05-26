@@ -19,14 +19,13 @@ declare namespace Array {
  */
 export type CreateArrayFromLength<
   L extends number, 
-  T extends any = number, 
+  T extends unknown = number, 
   Count extends T[] = []
->
-  = Integer.IsNegative<L> extends true
-    ? []
-    : Count["length"] extends L
-      ? Count
-      : CreateArrayFromLength<L, T, [...Count, T]>;
+> = Integer.IsNegative<L> extends true
+  ? []
+  : Count["length"] extends L
+    ? Count
+    : CreateArrayFromLength<L, T, [...Count, T]>;
 
 }
 
