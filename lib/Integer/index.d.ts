@@ -100,6 +100,21 @@ type _PositiveSub<A extends number, B extends number, Count extends number[] = [
       ? _PositiveSub<Rest["length"], B, [...Count, Rest["length"]]>
       : "A is lower than B";
 
+/**
+ * This method checks if a number is lower than another.
+ * 
+ * @param {number} A `a` in `if a < b` expression.
+ * @param {number} B `b` in `if a < b` expression.
+ * 
+ * @example
+ * type Lower1 = Integer.Lower<-34, 2>;   // true
+ * type Lower2 = Integer.Lower<0, 2>;     // true
+ * type Lower3 = Integer.Lower<23, 2>;    // false
+ * type Lower4 = Integer.Lower<-34, -4>;  // true
+ * type Lower5 = Integer.Lower<-4, -4>;   // false
+ * type Lower6 = Integer.Lower<4, 4>;     // false
+ * type Lower7 = Integer.Lower<0, 0>;     // false
+ */
 export type Lower<A extends number, B extends number>
   = A extends B
     ? false
@@ -125,6 +140,21 @@ export type Lower<A extends number, B extends number>
             : true
           : never;
 
+/**
+ * This method checks if a number is greater than another.
+ * 
+ * @param {number} A `a` in `if a > b` expression.
+ * @param {number} B `b` in `if a > b` expression.
+ * 
+ * @example
+ * type Greater1 = Integer.Greater<-34, 2>;   // false
+ * type Greater2 = Integer.Greater<0, 2>;     // false
+ * type Greater3 = Integer.Greater<23, 2>;    // true
+ * type Greater4 = Integer.Greater<-34, -4>;  // false
+ * type Greater5 = Integer.Greater<-4, -4>;   // false
+ * type Greater6 = Integer.Greater<4, 4>;     // false
+ * type Greater7 = Integer.Greater<0, 0>;     // false
+ */
 export type Greater<A extends number, B extends number>
   = A extends B
     ? false
@@ -132,10 +162,55 @@ export type Greater<A extends number, B extends number>
       ? false
       : true;
 
+/**
+ * This method checks if a number is equal to another.
+ * 
+ * @param {number} A `a` in `if a == b` expression.
+ * @param {number} B `b` in `if a == b` expression.
+ * 
+ * @example
+ * type Eq1 = Integer.Eq<-34, 2>;   // false
+ * type Eq2 = Integer.Eq<0, 2>;     // false
+ * type Eq3 = Integer.Eq<23, 2>;    // false
+ * type Eq4 = Integer.Eq<-34, -4>;  // false
+ * type Eq5 = Integer.Eq<-4, -4>;   // true
+ * type Eq6 = Integer.Eq<4, 4>;     // true
+ * type Eq7 = Integer.Eq<0, 0>;     // true
+ */
 export type Eq<A extends number, B extends number> = A extends B ? true : false;
 
+/**
+ * This method checks if a number is not equal to another.
+ * 
+ * @param {number} A `a` in `if a != b` expression.
+ * @param {number} B `b` in `if a != b` expression.
+ * 
+ * @example
+ * type Neq1 = Integer.Neq<-34, 2>;   // true
+ * type Neq2 = Integer.Neq<0, 2>;     // true
+ * type Neq3 = Integer.Neq<23, 2>;    // true
+ * type Neq4 = Integer.Neq<-34, -4>;  // true
+ * type Neq5 = Integer.Neq<-4, -4>;   // false
+ * type Neq6 = Integer.Neq<4, 4>;     // false
+ * type Neq7 = Integer.Neq<0, 0>;     // false
+ */
 export type Neq<A extends number, B extends number> = A extends B ? false : true;
 
+/**
+ * This method checks if a number is lower than or equal to another.
+ * 
+ * @param {number} A `a` in `if a <= b` expression.
+ * @param {number} B `b` in `if a <= b` expression.
+ * 
+ * @example
+ * type LowerEq1 = Integer.LowerEq<-34, 2>;   // true
+ * type LowerEq2 = Integer.LowerEq<0, 2>;     // true
+ * type LowerEq3 = Integer.LowerEq<23, 2>;    // false
+ * type LowerEq4 = Integer.LowerEq<-34, -4>;  // true
+ * type LowerEq5 = Integer.LowerEq<-4, -4>;   // true
+ * type LowerEq6 = Integer.LowerEq<4, 4>;     // true
+ * type LowerEq7 = Integer.LowerEq<0, 0>;     // true
+ */
 export type LowerEq<A extends number, B extends number>
   = Lower<A, B> extends true
     ? true
@@ -143,6 +218,21 @@ export type LowerEq<A extends number, B extends number>
       ? true
       : false
 
+/**
+ * This method checks if a number is greater than or equal to another.
+ * 
+ * @param {number} A `a` in `if a >= b` expression.
+ * @param {number} B `b` in `if a >= b` expression.
+ * 
+ * @example
+ * type GreaterEq1 = Integer.GreaterEq<-34, 2>;   // false
+ * type GreaterEq2 = Integer.GreaterEq<0, 2>;     // false
+ * type GreaterEq3 = Integer.GreaterEq<23, 2>;    // true
+ * type GreaterEq4 = Integer.GreaterEq<-34, -4>;  // false
+ * type GreaterEq5 = Integer.GreaterEq<-4, -4>;   // true
+ * type GreaterEq6 = Integer.GreaterEq<4, 4>;     // true
+ * type GreaterEq7 = Integer.GreaterEq<0, 0>;     // true
+ */
 export type GreaterEq<A extends number, B extends number>
   = Greater<A, B> extends true
     ? true
