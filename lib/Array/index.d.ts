@@ -12,14 +12,14 @@ declare namespace Array {
  * 
  * @example
  * // Normal usage
- * type A = CreateArrayFromLength<3>; // A: [number, number, number]
+ * type A = CreateArrayFromLength<3>; // A: [undefined, undefined, undefined]
  * 
  * // Identify the type element
  * type B = CreateArrayFromLength<3, string>; // B: [string, string, string]
  */
 export type CreateArrayFromLength<
   L extends number, 
-  T extends unknown = number, 
+  T extends unknown = undefined, 
   Count extends T[] = []
 > = Integer.IsNegative<L> extends true
   ? []

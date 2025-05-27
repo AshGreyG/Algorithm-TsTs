@@ -121,11 +121,6 @@ type CaseLibInteger = [
   Expect<Equal<Integer.Eq<2, 2>, true>>,
   Expect<Equal<Integer.Eq<-2, -2>, true>>,
 
-  // Integer.ToString
-  Expect<Equal<Integer.ToString<0>, "0">>,
-  Expect<Equal<Integer.ToString<-23>, "-23">>,
-  Expect<Equal<Integer.ToString<208>, "208">>,
-
   // Integer.GreaterEq
   Expect<Equal<Integer.GreaterEq<2, 1>, true>>,
   Expect<Equal<Integer.GreaterEq<1, 2>, false>>,

@@ -9,7 +9,7 @@ import { Equal, Expect } from "../utils";
 
 type CaseLibArray = [
   // Array.CreateArrayFromLength
-  Expect<Equal<Array.CreateArrayFromLength<2>, [number,number]>>,
+  Expect<Equal<Array.CreateArrayFromLength<2>, [undefined,undefined]>>,
   Expect<Equal<Array.CreateArrayFromLength<3, string>, [string,string,string]>>,
   Expect<Equal<Array.CreateArrayFromLength<0>, []>>,
   Expect<Equal<Array.CreateArrayFromLength<-1>, []>>,
