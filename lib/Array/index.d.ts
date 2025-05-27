@@ -27,6 +27,22 @@ export type CreateArrayFromLength<
     ? Count
     : CreateArrayFromLength<L, T, [...Count, T]>;
 
+export type At<
+  Arr extends unknown[],
+  N extends number, 
+  Count extends unknown[] = []
+> = Integer.IsNegative<N> extends true
+  ? Integer.Add<N, Arr["length"]> extends number
+    ? At<Arr, Integer.Add<N, Arr["length"]>, Count>
+    : never
+  : Count["length"] extends N
+    ? Arr extends [infer F, ...infer Rest]
+      ? F
+      : never
+    : Arr extends [infer F, ...infer Rest]
+      ? At<Rest, N, [...Count, F]>
+      : never;
+
 }
 
 export default Array;
