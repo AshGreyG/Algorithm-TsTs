@@ -14,4 +14,8 @@ type CaseLibArray = [
   Expect<Equal<Array.CreateArrayFromLength<0>, []>>,
   Expect<Equal<Array.CreateArrayFromLength<-1>, []>>,
 
+  // Array.At
+  Expect<Equal<Array.At<[1,2,3], 2>, 3>>,
+  Expect<Equal<Array.At<[1,2,3,4], 0>, 1>>,
+
 ]

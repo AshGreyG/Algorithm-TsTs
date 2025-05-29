@@ -27,6 +27,20 @@ export type CreateArrayFromLength<
     ? Count
     : CreateArrayFromLength<L, T, [...Count, T]>;
 
+/**
+ * Type function to get the `N`th type element of array type `Arr`. When the index
+ * is negative, it will come back from the tail of the array.
+ * 
+ * @param Arr The array to be got element.
+ * @param N The index of element.
+ * @param Count The type to accumulate the type of element of `Array` as its element to
+ * return the final result when the length of `Count` is equal to `N`
+ * 
+ * @example
+ * type At1 = Array.At<[1, 2, 3], 1>;   // 2
+ * type At2 = Array.At<[1, 2, 3], 0>;   // 1
+ * type At1 = Array.At<[1, 2, 3], -1>;  // 3
+ */
 export type At<
   Arr extends unknown[],
   N extends number, 

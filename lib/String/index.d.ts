@@ -2,6 +2,21 @@ import Integer from "../Integer";
 
 declare namespace String {
 
+/**
+ * Type function to get the length of a string. Use the property of string type
+ * cannot get the actual length number literal type, which is different from
+ * tuple type.
+ * 
+ * @param S The string to be got length.
+ * @param Count The middle state type variable to store the middle length of string
+ * during the recursion.
+ * 
+ * @example
+ * type Length1 = String.Length<"">;        // 0
+ * type Length2 = String.Length<"-+()">;    // 4
+ * type Length3 = String.Length<"12345">;   // 5
+ * type Length4 = String.Length<"🏅🐵🥕">;  // 6  // Known issue [TypeScript #61525]
+ */
 export type Length<S extends string, Count extends number = 0>
   = S extends `${infer H}${infer Rest}`
     ? Length<Rest, Integer.Inc<Count>>

@@ -24,6 +24,7 @@ declare -A test_cases=(
   ["Integer.IsEven"]="1:false 0:true -22:true 19:false"
 
   ["Array.CreateArrayFromLength"]="2:[undefined,undefined] 3|string:[string,string,string] 0:[] -1:[]"
+  ["Array.At"]="[1,2,3]|2:3 [1,2,3,4]|0|:1"
 
   ["BigInteger.Lower"]="23|123:true 23|23:false 1234|1235:true -123|90:true 123|-90:false 0|0:false -2|-2:false 12345|12345:false"
 
