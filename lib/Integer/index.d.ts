@@ -7,7 +7,7 @@ declare namespace Integer {
  * method doesn't support an optional `radix` type parameter. Notice it doesn't support
  * hexadecimal, octal and binary.
  * 
- * @param {number} A The number to convert to string.
+ * @param A The number to convert to string.
  * 
  * @example
  * type Num1 = Integer.ToString<3>;   // => "3"
@@ -19,7 +19,7 @@ export type ToString<A extends number> = `${A}`;
 /**
  * This method checks if a number is negative.
  * 
- * @param {number} A The number to check if is negative.
+ * @param A The number to check if is negative.
  * 
  * @example
  * type Is1 = Integer.IsNegative<1>;  // => false
@@ -31,7 +31,7 @@ export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends n
 /**
  * This method checks if a number is positive.
  * 
- * @param {number} A The number to check if is positive.
+ * @param A The number to check if is positive.
  * 
  * @example
  * type Is1 = Integer.IsPositive<1>;  // => true
@@ -48,7 +48,7 @@ export type IsPositive<A extends number>
 /**
  * This method checks if a number is zero.
  * 
- * @param {number} A The number to check if is zero.
+ * @param A The number to check if is zero.
  * 
  * @example
  * type Is1 = Integer.IsZero<1>;  // => false
@@ -60,7 +60,7 @@ export type IsZero<A extends number> = A extends 0 ? true : false;
 /**
  * This method gets the opposite of a number.
  * 
- * @param {number} A The number to be got opposite.
+ * @param A The number to be got opposite.
  * 
  * @example
  * type Opposite1 = Integer.Opposite<3>;  // -3
@@ -80,9 +80,9 @@ export type Opposite<A extends number>
  * This method is a internal helper to define the sub function `a - b`, but
  * `a` cannot be less than `b`. It uses the tuple type in TsTs.
  * 
- * @param {number} A `a` in `a - b` expression.
- * @param {number} B `b` in `a - b` expression.
- * @param {number[]} [Count] The middle status type variable to store the 
+ * @param A `a` in `a - b` expression.
+ * @param B `b` in `a - b` expression.
+ * @param Count The middle status type variable to store the 
  * middle result, when `A extends B` is true, this method will return the
  * `Count["length"]`, and that's the answer.
  * 
@@ -103,8 +103,8 @@ type _PositiveSub<A extends number, B extends number, Count extends number[] = [
 /**
  * This method checks if a number is lower than another.
  * 
- * @param {number} A `a` in `if a < b` expression.
- * @param {number} B `b` in `if a < b` expression.
+ * @param A `a` in `if a < b` expression.
+ * @param B `b` in `if a < b` expression.
  * 
  * @example
  * type Lower1 = Integer.Lower<-34, 2>;   // true
@@ -143,8 +143,8 @@ export type Lower<A extends number, B extends number>
 /**
  * This method checks if a number is greater than another.
  * 
- * @param {number} A `a` in `if a > b` expression.
- * @param {number} B `b` in `if a > b` expression.
+ * @param A `a` in `if a > b` expression.
+ * @param B `b` in `if a > b` expression.
  * 
  * @example
  * type Greater1 = Integer.Greater<-34, 2>;   // false
@@ -165,8 +165,8 @@ export type Greater<A extends number, B extends number>
 /**
  * This method checks if a number is equal to another.
  * 
- * @param {number} A `a` in `if a == b` expression.
- * @param {number} B `b` in `if a == b` expression.
+ * @param A `a` in `if a == b` expression.
+ * @param B `b` in `if a == b` expression.
  * 
  * @example
  * type Eq1 = Integer.Eq<-34, 2>;   // false
@@ -182,8 +182,8 @@ export type Eq<A extends number, B extends number> = A extends B ? true : false;
 /**
  * This method checks if a number is not equal to another.
  * 
- * @param {number} A `a` in `if a != b` expression.
- * @param {number} B `b` in `if a != b` expression.
+ * @param A `a` in `if a != b` expression.
+ * @param B `b` in `if a != b` expression.
  * 
  * @example
  * type Neq1 = Integer.Neq<-34, 2>;   // true
@@ -199,8 +199,8 @@ export type Neq<A extends number, B extends number> = A extends B ? false : true
 /**
  * This method checks if a number is lower than or equal to another.
  * 
- * @param {number} A `a` in `if a <= b` expression.
- * @param {number} B `b` in `if a <= b` expression.
+ * @param A `a` in `if a <= b` expression.
+ * @param B `b` in `if a <= b` expression.
  * 
  * @example
  * type LowerEq1 = Integer.LowerEq<-34, 2>;   // true
@@ -221,8 +221,8 @@ export type LowerEq<A extends number, B extends number>
 /**
  * This method checks if a number is greater than or equal to another.
  * 
- * @param {number} A `a` in `if a >= b` expression.
- * @param {number} B `b` in `if a >= b` expression.
+ * @param A `a` in `if a >= b` expression.
+ * @param B `b` in `if a >= b` expression.
  * 
  * @example
  * type GreaterEq1 = Integer.GreaterEq<-34, 2>;   // false
