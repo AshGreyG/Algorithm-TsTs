@@ -1,5 +1,12 @@
 import Array from "../Array";
 
+/**
+ * For stable using, please do not pass the number literal type greater than
+ * or equal to 1000 to the argument of type function defined in `Integer`
+ * namespace. If you want to use literal type greater than or equal to 1000,
+ * please use `BigInteger` namespace, whose methods will first convert big
+ * integer to string.
+ */
 declare namespace Integer {
 
 /** 
@@ -240,6 +247,20 @@ export type GreaterEq<A extends number, B extends number>
       ? true
       : false;
 
+/**
+ * This method adds two number.
+ * 
+ * @param A `a` in `a + b` expression
+ * @param B `b` in `a + b` expression
+ * 
+ * @example
+ * type Add1 = Integer.Add<1, 2>;   // 3
+ * type Add2 = Integer.Add<1, -1>;  // 0
+ * type Add3 = Integer.Add<1, 0>;   // 1
+ * type Add4 = Integer.Add<-3, 2>;  // -1
+ * type Add5 = Integer.Add<-9, 9>;  // 0
+ * type Add6 = Integer.Add<-6, 0>;  // -6
+ */
 export type Add<A extends number, B extends number>
   = A extends Opposite<B>
     ? 0
