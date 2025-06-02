@@ -22,9 +22,9 @@ export type ToString<A extends bigint> = `${A}`;
  * @param A The bigint to check if is negative.
  * 
  * @example
- * type Is1 = BigInteger.IsNegative<1n>;  // => false
- * type Is2 = BigInteger.IsNegative<0n>;  // => false
- * type Is3 = BigInteger.IsNegative<-2n>; // => true
+ * type Is1 = BigInteger.IsNegative<1n>;  // false
+ * type Is2 = BigInteger.IsNegative<0n>;  // false
+ * type Is3 = BigInteger.IsNegative<-2n>; // true
  */
 export type IsNegative<A extends bigint>
   = `${A}` extends `-${infer OA extends bigint}` ? true : false;
@@ -35,9 +35,9 @@ export type IsNegative<A extends bigint>
  * @param A The bigint to check if is positive.
  * 
  * @example
- * type Is1 = BigInteger.IsPositive<1n>;  // => true
- * type Is2 = BigInteger.IsPositive<0n>;  // => false
- * type Is3 = BigInteger.IsPositive<-2n>; // => false
+ * type Is1 = BigInteger.IsPositive<1n>;  // true
+ * type Is2 = BigInteger.IsPositive<0n>;  // false
+ * type Is3 = BigInteger.IsPositive<-2n>; // false
  */
 export type IsPositive<A extends bigint>
   = IsNegative<A> extends false
@@ -52,9 +52,9 @@ export type IsPositive<A extends bigint>
  * @param A The bigint to check if is zero.
  * 
  * @example
- * type Is1 = BigInteger.IsZero<1n>;  // => false
- * type Is2 = BigInteger.IsZero<0n>;  // => true
- * type Is3 = BigInteger.IsZero<-2n>; // => false
+ * type Is1 = BigInteger.IsZero<1n>;  // false
+ * type Is2 = BigInteger.IsZero<0n>;  // true
+ * type Is3 = BigInteger.IsZero<-2n>; // false
  */
 export type IsZero<A extends bigint> = A extends 0n ? true : false;
 
