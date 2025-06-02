@@ -8,6 +8,17 @@ import BigInteger from "../lib/BigInteger";
 import { Equal, Expect } from "../utils";
 
 type CaseLibBigInteger = [
+  // BigInteger.Eq
+  Expect<Equal<BigInteger.Eq<0n, 0n>, true>>,
+  Expect<Equal<BigInteger.Eq<-12n, -12n>, true>>,
+  Expect<Equal<BigInteger.Eq<23n, 22n>, false>>,
+  Expect<Equal<BigInteger.Eq<23n, -23n>, false>>,
+
+  // BigInteger.Opposite
+  Expect<Equal<BigInteger.Opposite<0n>, 0n>>,
+  Expect<Equal<BigInteger.Opposite<23n>, -23n>>,
+  Expect<Equal<BigInteger.Opposite<-12n>, 12n>>,
+
   // BigInteger.Lower
   Expect<Equal<BigInteger.Lower<23n, 123n>, true>>,
   Expect<Equal<BigInteger.Lower<23n, 23n>, false>>,
@@ -17,5 +28,25 @@ type CaseLibBigInteger = [
   Expect<Equal<BigInteger.Lower<0n, 0n>, false>>,
   Expect<Equal<BigInteger.Lower<-2n, -2n>, false>>,
   Expect<Equal<BigInteger.Lower<12345n, 12345n>, false>>,
+
+  // BigInteger.ToString
+  Expect<Equal<BigInteger.ToString<2n>, "2">>,
+  Expect<Equal<BigInteger.ToString<-2n>, "-2">>,
+  Expect<Equal<BigInteger.ToString<0n>, "0">>,
+
+  // BigInteger.IsZero
+  Expect<Equal<BigInteger.IsZero<0n>, true>>,
+  Expect<Equal<BigInteger.IsZero<29n>, false>>,
+  Expect<Equal<BigInteger.IsZero<-2n>, false>>,
+
+  // BigInteger.IsNegative
+  Expect<Equal<BigInteger.IsNegative<-23n>, true>>,
+  Expect<Equal<BigInteger.IsNegative<26n>, false>>,
+  Expect<Equal<BigInteger.IsNegative<0n>, false>>,
+
+  // BigInteger.IsPositive
+  Expect<Equal<BigInteger.IsPositive<90n>, true>>,
+  Expect<Equal<BigInteger.IsPositive<0n>, false>>,
+  Expect<Equal<BigInteger.IsPositive<-8n>, false>>,
 
 ]

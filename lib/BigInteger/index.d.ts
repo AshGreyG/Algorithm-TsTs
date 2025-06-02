@@ -70,7 +70,7 @@ export type IsZero<A extends bigint> = A extends 0n ? true : false;
  */
 export type Opposite<A extends bigint>
   = IsZero<A> extends true
-    ? 0
+    ? 0n
     : `${A}` extends `-${infer OA extends bigint}`
       ? OA
       : `-${A}` extends `${infer OA extends bigint}`

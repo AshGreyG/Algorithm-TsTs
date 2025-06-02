@@ -26,6 +26,12 @@ declare -A test_cases=(
   ["Array.CreateArrayFromLength"]="2:[undefined,undefined] 3|string:[string,string,string] 0:[] -1:[]"
   ["Array.At"]="[1,2,3]|2:3 [1,2,3,4]|0|:1"
 
+  ["BigInteger.ToString"]="2n:\"2\" -2n:\"-2\" 0n:\"0\""
+  ["BigInteger.IsNegative"]="-23n:true 26n:false 0n:false"
+  ["BigInteger.IsPositive"]="90n:true 0n:false -8n:false"
+  ["BigInteger.IsZero"]="0n:true 29n:false -2n:false"
+  ["BigInteger.Opposite"]="0n:0n 23n:-23n -12n:12n"
+  ["BigInteger.Eq"]="0n|0n:true -12n|-12n:true 23n|22n:false 23n|-23n:false"
   ["BigInteger.Lower"]="23n|123n:true 23n|23n:false 1234n|1235n:true -123n|90n:true 123n|-90n:false 0n|0n:false -2n|-2n:false 12345n|12345n:false"
 
   ["String.Length"]="\"abs\":3 \"\":0 \"2222_2222_2222_2222_2222\":24"
