@@ -9,6 +9,9 @@ declare namespace Array {
  * @param T The type element of created array type.
  * @param Count The type to accumulate the type `T` as its element to generate
  * the returned array type.
+ * @returns If `T` is not defined, then it will create an array containing `L`
+ * `undefined`s. If `T` is defined, then it will create an array containing `L`
+ * `T`s.
  * 
  * @example
  * // Normal usage
@@ -34,12 +37,16 @@ export type CreateArrayFromLength<
  * @param Arr The array to be got element.
  * @param N The index of element.
  * @param Count The type to accumulate the type of element of `Array` as its element to
- * return the final result when the length of `Count` is equal to `N`
+ * return the final result when the length of `Count` is equal to `N`.
+ * @returns Returns the element of `Arr` at index `N`, if the index is negative, it will
+ * come back from the end of the array. If the index is greater than the length of `Arr`,
+ * then it will return `never`.
  * 
  * @example
  * type At1 = Array.At<[1, 2, 3], 1>;   // 2
  * type At2 = Array.At<[1, 2, 3], 0>;   // 1
- * type At1 = Array.At<[1, 2, 3], -1>;  // 3
+ * type At3 = Array.At<[1, 2, 3], -1>;  // 3
+ * type At4 = Array.At<[1, 2, 3], 4>;   // never
  */
 export type At<
   Arr extends unknown[],
@@ -56,6 +63,17 @@ export type At<
     : Arr extends [infer F, ...infer Rest]
       ? At<Rest, N, [...Count, F]>
       : never;
+
+/**
+ * Unlike `Array.prototype.concat` method, it cannot receive unlimited type
+ * parameters, it can only concat two arrays together.
+ * 
+ * @param A The first array to concat, the elements of it will show at the front.
+ * @param B The second array to concat, the elements of it will show at the behind.
+ * @returns Return the array `[a0, a1, ..., an, b0, b1, ...bm]`, where `a0,...an` are
+ * the elements of array `A`, `b0,...,bm` are the elements of array `B`.
+ */
+export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B];
 
 }
 
