@@ -17,9 +17,9 @@ declare namespace Integer {
  * @param A The number to convert to string.
  * 
  * @example
- * type Num1 = Integer.ToString<3>;   // => "3"
- * type Num2 = Integer.ToString<0>;   // => "0"
- * type Num3 = Integer.ToString<-3>;  // => "-3"
+ * type Num1 = Integer.ToString<3>;   // "3"
+ * type Num2 = Integer.ToString<0>;   // "0"
+ * type Num3 = Integer.ToString<-3>;  // "-3"
  */
 export type ToString<A extends number> = `${A}`;
 
@@ -29,9 +29,9 @@ export type ToString<A extends number> = `${A}`;
  * @param A The number to check if is negative.
  * 
  * @example
- * type Is1 = Integer.IsNegative<1>;  // => false
- * type Is2 = Integer.IsNegative<0>;  // => false
- * type Is3 = Integer.IsNegative<-2>; // => true
+ * type Is1 = Integer.IsNegative<1>;  // false
+ * type Is2 = Integer.IsNegative<0>;  // false
+ * type Is3 = Integer.IsNegative<-2>; // true
  */
 export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends number}` ? true : false;
 
@@ -41,9 +41,9 @@ export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends n
  * @param A The number to check if is positive.
  * 
  * @example
- * type Is1 = Integer.IsPositive<1>;  // => true
- * type Is2 = Integer.IsPositive<0>;  // => false
- * type Is3 = Integer.IsPositive<-2>; // => false
+ * type Is1 = Integer.IsPositive<1>;  // true
+ * type Is2 = Integer.IsPositive<0>;  // false
+ * type Is3 = Integer.IsPositive<-2>; // false
  */
 export type IsPositive<A extends number>
   = IsNegative<A> extends false
@@ -58,9 +58,9 @@ export type IsPositive<A extends number>
  * @param A The number to check if is zero.
  * 
  * @example
- * type Is1 = Integer.IsZero<1>;  // => false
- * type Is2 = Integer.IsZero<0>;  // => true
- * type Is3 = Integer.IsZero<-2>; // => false
+ * type Is1 = Integer.IsZero<1>;  // false
+ * type Is2 = Integer.IsZero<0>;  // true
+ * type Is3 = Integer.IsZero<-2>; // false
  */
 export type IsZero<A extends number> = A extends 0 ? true : false;
 
