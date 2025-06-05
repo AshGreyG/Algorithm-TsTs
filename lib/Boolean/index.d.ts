@@ -84,3 +84,5 @@ export type Nand<A extends boolean, B extends boolean> = Not<And<A, B>>;
 export type Nor<A extends boolean, B extends boolean> = Not<Or<A, B>>;
 
 }
+
+export default Boolean;
