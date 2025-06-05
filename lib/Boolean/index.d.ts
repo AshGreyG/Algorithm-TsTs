@@ -53,5 +53,34 @@ export type Or<A extends boolean, B extends boolean>
  */
 export type Not<A extends boolean> = A extends true ? false : true;
 
+/**
+ * This is a boolean type function to return the value of expression
+ * like `a ↑ b`.
+ * 
+ * @param A `a` in expression `a ↑ b`.
+ * @param B `b` in expression `a ↑ b`.
+ * @returns The result of expression `a ↑ b` in JavaScript.
+ * 
+ * @example
+ * type Nand1 = Boolean.Nand<true, false>;                            // true
+ * type Nand2 = Boolean.Nand<Integer.Eq<Integer.Add<1, 2>, 3>, true>; // false
+ * type Nand3 = Boolean.Nand<Integer.Lower<-3, -9>, false>;           // true
+ */
+export type Nand<A extends boolean, B extends boolean> = Not<And<A, B>>;
+
+/**
+ * This is a boolean type function to return the value of expression
+ * like `a ↓ b`.
+ * 
+ * @param A `a` in expression `a ↓ b`.
+ * @param B `b` in expression `a ↓ b`.
+ * @returns The result of expression `a ↓ b` in JavaScript.
+ * 
+ * @example
+ * type Nor1 = Boolean.Nor<true, false>;                            // false
+ * type Nor2 = Boolean.Nor<Integer.Eq<Integer.Add<1, 2>, 3>, true>; // false
+ * type Nor3 = Boolean.Nor<Integer.Lower<-3, -9>, false>;           // true
+ */
+export type Nor<A extends boolean, B extends boolean> = Not<Or<A, B>>;
 
 }
