@@ -40,4 +40,18 @@ export type Or<A extends boolean, B extends boolean>
       ? true
       : false;
 
+/**
+ * This is a boolean type function to return the value of expression
+ * like `!a`.
+ * 
+ * @param A `a` in expression `!a`.
+ * @returns The result of expression `!a` in JavaScript.
+ * 
+ * @example
+ * type Not1 = Boolean.Not<true>;   // false
+ * type Not2 = Boolean.Not<false>;  // true
+ */
+export type Not<A extends boolean> = A extends true ? false : true;
+
+
 }
