@@ -8,6 +8,9 @@ import Array from "../lib/Array";
 import { Equal, Expect } from "../utils";
 
 type CaseLibArray = [
+  // Array.Concat
+  Expect<Equal<Array.Concat<[1,2,3], [2,3,1]>, [1,2,3,2,3,1]>>,
+
   // Array.CreateArrayFromLength
   Expect<Equal<Array.CreateArrayFromLength<2>, [undefined,undefined]>>,
   Expect<Equal<Array.CreateArrayFromLength<3, string>, [string,string,string]>>,

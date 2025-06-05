@@ -25,6 +25,7 @@ declare -A test_cases=(
 
   ["Array.CreateArrayFromLength"]="2:[undefined,undefined] 3|string:[string,string,string] 0:[] -1:[]"
   ["Array.At"]="[1,2,3]|2:3 [1,2,3,4]|0|:1"
+  ["Array.Concat"]="[1,2,3]|[2,3,1]:[1,2,3,2,3,1]"
 
   ["BigInteger.ToString"]="2n:\"2\" -2n:\"-2\" 0n:\"0\""
   ["BigInteger.IsNegative"]="-23n:true 26n:false 0n:false"

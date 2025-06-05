@@ -72,8 +72,25 @@ export type At<
  * @param B The second array to concat, the elements of it will show at the behind.
  * @returns Return the array `[a0, a1, ..., an, b0, b1, ...bm]`, where `a0,...an` are
  * the elements of array `A`, `b0,...,bm` are the elements of array `B`.
+ * 
+ * @example
+ * type Concat1 = Concat<[1, 2, 3], [1]>;           // [1, 2, 3, 1]
+ * type Concat2 = Concat<["🐒", 2, 9n], [true, 0]>; // ["🐒", 2, 9n, true, 0]
  */
 export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B];
+
+export type Fill<
+  Arr extends unknown[],
+  V extends unknown,
+  Start extends number = 0,
+  End extends number = Arr["length"],
+  Count extends unknown[] = [],
+  Result extends unknown[] = []
+> = Integer.Lower<Start, Arr["length"]> extends true
+  ? Fill<Arr, V, 0, End, Count, Result>
+  : Integer.
+
+
 
 }
 
