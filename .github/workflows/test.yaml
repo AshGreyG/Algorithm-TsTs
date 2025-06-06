@@ -17,6 +17,6 @@ jobs:
         with:
           node-version: "22"
       - name: Install tsc
-        run: npm install tsc --save-dev
+        run: npm install typescript --save-dev
       - name: Check tests file
         run: find ./test -type f -name "lib-*.test.ts" -exec npx tsc --noEmit {} +
