@@ -8,11 +8,24 @@ import Array from "../lib/Array";
 import { Equal, Expect } from "../utils";
 
 type CaseLibArray = [
+  // Array.Concat
+  Expect<Equal<Array.Concat<[1,2,3], [2,3,1]>, [1,2,3,2,3,1]>>,
+
   // Array.CreateArrayFromLength
   Expect<Equal<Array.CreateArrayFromLength<2>, [undefined,undefined]>>,
   Expect<Equal<Array.CreateArrayFromLength<3, string>, [string,string,string]>>,
   Expect<Equal<Array.CreateArrayFromLength<0>, []>>,
   Expect<Equal<Array.CreateArrayFromLength<-1>, []>>,
+
+  // Array.Fill
+  Expect<Equal<Array.Fill<[1,2,3], "3">, ["3","3","3"]>>,
+  Expect<Equal<Array.Fill<[0,9,1], "1", 1, 2>, [0,"1",1]>>,
+  Expect<Equal<Array.Fill<["head",9,1], true, 1>, ["head",true,true]>>,
+  Expect<Equal<Array.Fill<[1,2,3], "3", 2, 1>, [1,2,3]>>,
+  Expect<Equal<Array.Fill<[1,2,3], "3", -4, 2>, ["3","3",3]>>,
+  Expect<Equal<Array.Fill<[1,2,3], "3", -2, 3>, [1,"3","3"]>>,
+  Expect<Equal<Array.Fill<[1,2,3], "3", 7, 2>, [1,2,3]>>,
+  Expect<Equal<Array.Fill<[1,2,3], "3", 1, -1>, [1,"3",3]>>,
 
   // Array.At
   Expect<Equal<Array.At<[1,2,3], 2>, 3>>,
