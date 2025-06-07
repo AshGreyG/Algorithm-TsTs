@@ -179,6 +179,25 @@ export type IsFlatten<Arr extends unknown[]>
       : IsFlatten<Rest>
     : true;
 
+/**
+ * This method flattens a nested array.
+ * 
+ * @param Arr The nested array (or not nested, then it will return as original).
+ * @param Result The array to store the final result during the process procedure.
+ * @returns The flattened `Arr`.
+ * 
+ * @example
+ * type Flat1 = Flat<[1, 2, 3]>;              // [1, 2, 3]
+ * type Flat2 = Flat<[1, [2, 3, [2]], [2]]>;  // [1, 2, 3, 2, 2]
+ */
+export type Flat<Arr extends unknown[], Result extends unknown[] = []> 
+  = Arr extends [infer F, ...infer Rest]
+    ? F extends unknown[]
+      ? Flat<[...F, ...Rest], Result>
+      : Flat<Rest, [...Result, F]>
+    : Result;
+
+
 }
 
 export default Array;
