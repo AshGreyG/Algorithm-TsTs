@@ -48,6 +48,8 @@ declare -A test_cases=(
   ["Boolean.Nor"]="false:true true:false"
   ["Boolean.Nand"]="false|false:true false|true:true true|false:true true|true:false"
   ["Boolean.Nor"]="false|false:true false|true:false true|false:false true|true:false"
+  ["Boolean.MultipleAnd"]="[true,true,true]:true [true,false,true]:false [false,false,false]:false"
+  ["Boolean.MultipleOr"]="[true,true,true]:true [true,false,false]:true [false,false,false]:false"
 )
 
 function repeat {

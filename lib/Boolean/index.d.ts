@@ -83,6 +83,34 @@ export type Nand<A extends boolean, B extends boolean> = Not<And<A, B>>;
  */
 export type Nor<A extends boolean, B extends boolean> = Not<Or<A, B>>;
 
+/**
+ * This method is `N` element version of `And`, it returns the value of expression
+ * `a_1 && a_2 && ... a_n`
+ * 
+ * @param BArr The array of booleans `a_1`, `a_2`, ..., `a_n`
+ * @returns The value of expression `a_1 && a_2 && ... && a_n`.
+ */
+export type MultipleAnd<BArr extends boolean[]>
+  = BArr extends [infer F extends boolean, ...infer Rest extends boolean[]]
+    ? F extends false
+      ? false
+      : MultipleAnd<Rest>
+    : true
+
+/**
+ * This method is `N` element version of `Or`, it returns the value of expression
+ * `a_1 || a_2 || ... a_n`
+ * 
+ * @param BArr The array of booleans `a_1`, `a_2`, ..., `a_n`
+ * @returns The value of expression `a_1 || a_2 || ... || a_n`.
+ */
+export type MultipleOr<BArr extends boolean[]>
+  = BArr extends [infer F extends boolean, ...infer Rest extends boolean[]]
+    ? F extends true
+      ? true
+      : MultipleOr<Rest>
+    : false;
+
 }
 
 export default Boolean;
