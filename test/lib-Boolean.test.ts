@@ -14,6 +14,11 @@ type CaseLibBoolean = [
   Expect<Equal<Boolean.Nand<true, false>, true>>,
   Expect<Equal<Boolean.Nand<true, true>, false>>,
 
+  // Boolean.MultipleAnd
+  Expect<Equal<Boolean.MultipleAnd<[true,true,true]>, true>>,
+  Expect<Equal<Boolean.MultipleAnd<[true,false,true]>, false>>,
+  Expect<Equal<Boolean.MultipleAnd<[false,false,false]>, false>>,
+
   // Boolean.And
   Expect<Equal<Boolean.And<false, false>, false>>,
   Expect<Equal<Boolean.And<false, true>, false>>,
@@ -25,6 +30,11 @@ type CaseLibBoolean = [
   Expect<Equal<Boolean.Nor<false, true>, false>>,
   Expect<Equal<Boolean.Nor<true, false>, false>>,
   Expect<Equal<Boolean.Nor<true, true>, false>>,
+
+  // Boolean.MultipleOr
+  Expect<Equal<Boolean.MultipleOr<[true,true,true]>, true>>,
+  Expect<Equal<Boolean.MultipleOr<[true,false,false]>, true>>,
+  Expect<Equal<Boolean.MultipleOr<[false,false,false]>, false>>,
 
   // Boolean.Or
   Expect<Equal<Boolean.Or<false, false>, false>>,
