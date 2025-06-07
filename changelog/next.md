@@ -11,6 +11,12 @@
   + `Boolean.Nand<A, B>`
   + `Boolean.Nor<A, B>`
 
+### 2025-06-07 (feature/array-methods → main)
+
++ Add two new methods of `Array` namespace:
+  + `Array.Concat<A, B>`
+  + `Array.Fill<Arr, V, Start?, End?>`
+
 ## ⚡ Improvements
 
 ## 🐦‍🔥 No longer broken
