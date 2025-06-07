@@ -17,6 +17,12 @@
   + `Array.Concat<A, B>`
   + `Array.Fill<Arr, V, Start?, End?>`
 
+### 2025-06-07 (feature/boolean-methods → main)
+
++ Add two new methods of multiple params of `Boolean` namespace:
+  + `Boolean.MultipleAnd<[boolean]>`
+  + `Boolean.MultipleOr<[boolean]>`
+
 ## ⚡ Improvements
 
 ## 🐦‍🔥 No longer broken

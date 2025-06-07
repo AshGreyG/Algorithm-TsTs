@@ -1,0 +1,22 @@
+name: Algorithm-TsTs
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-test-passed:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install tsc
+        run: npm install typescript --save-dev
+      - name: Check tests file
+        run: find ./test -type f -name "lib-*.test.ts" -exec npx tsc --noEmit {} +
