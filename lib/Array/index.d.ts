@@ -156,6 +156,29 @@ export type Fill<
                     ? Fill<Arr, V, Start, End, [...Count, 0], [...Result, V]>
                     : Fill<Arr, V, Start, End, [...Count, 0], [...Result, At<Arr, Count["length"]>]>;
 
+/**
+ * This method checks if an array is flatten, in other words, it does't contain
+ * a nested array as its element.
+ * 
+ * @param Arr The array to be checked.
+ * @returns If `Arr` has a nested array as its element, then this method returns
+ * `false` type, otherwise `true` type.
+ * 
+ * @example
+ * type Is1 = Array.IsFlatten<[]>;              // true
+ * type Is2 = Array.IsFlatten<[[]]>;            // false
+ * type Is3 = Array.IsFlatten<[1, 2, 3]>;       // true
+ * type Is4 = Array.IsFlatten<[1, [2], 3]>;     // false
+ * type Is5 = Array.IsFlatten<[[], 1, 2>];      // false
+ * type Is6 = Array.IsFlatten<[1, [1, 2, []]]>; // false
+ */
+export type IsFlatten<Arr extends unknown[]>
+  = Arr extends [infer F, ...infer Rest]
+    ? F extends unknown[]
+      ? false
+      : IsFlatten<Rest>
+    : true;
+
 }
 
 export default Array;
