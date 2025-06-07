@@ -16,6 +16,8 @@
 + Add two new methods of `Array` namespace:
   + `Array.Concat<A, B>`
   + `Array.Fill<Arr, V, Start?, End?>`
+  + `Array.IsFlatten<A>`
+  + `Array.Flat<A>`
 
 ### 2025-06-07 (feature/boolean-methods → main)
 
