@@ -156,6 +156,48 @@ export type Fill<
                     ? Fill<Arr, V, Start, End, [...Count, 0], [...Result, V]>
                     : Fill<Arr, V, Start, End, [...Count, 0], [...Result, At<Arr, Count["length"]>]>;
 
+/**
+ * This method checks if an array is flatten, in other words, it does't contain
+ * a nested array as its element.
+ * 
+ * @param Arr The array to be checked.
+ * @returns If `Arr` has a nested array as its element, then this method returns
+ * `false` type, otherwise `true` type.
+ * 
+ * @example
+ * type Is1 = Array.IsFlatten<[]>;              // true
+ * type Is2 = Array.IsFlatten<[[]]>;            // false
+ * type Is3 = Array.IsFlatten<[1, 2, 3]>;       // true
+ * type Is4 = Array.IsFlatten<[1, [2], 3]>;     // false
+ * type Is5 = Array.IsFlatten<[[], 1, 2>];      // false
+ * type Is6 = Array.IsFlatten<[1, [1, 2, []]]>; // false
+ */
+export type IsFlatten<Arr extends unknown[]>
+  = Arr extends [infer F, ...infer Rest]
+    ? F extends unknown[]
+      ? false
+      : IsFlatten<Rest>
+    : true;
+
+/**
+ * This method flattens a nested array.
+ * 
+ * @param Arr The nested array (or not nested, then it will return as original).
+ * @param Result The array to store the final result during the process procedure.
+ * @returns The flattened `Arr`.
+ * 
+ * @example
+ * type Flat1 = Flat<[1, 2, 3]>;              // [1, 2, 3]
+ * type Flat2 = Flat<[1, [2, 3, [2]], [2]]>;  // [1, 2, 3, 2, 2]
+ */
+export type Flat<Arr extends unknown[], Result extends unknown[] = []> 
+  = Arr extends [infer F, ...infer Rest]
+    ? F extends unknown[]
+      ? Flat<[...F, ...Rest], Result>
+      : Flat<Rest, [...Result, F]>
+    : Result;
+
+
 }
 
 export default Array;
