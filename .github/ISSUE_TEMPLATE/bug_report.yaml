@@ -1,0 +1,59 @@
+name: 🐛 Bug report
+description: Report an issue
+labels: [bug]
+type: Bug
+body: 
+  - type: markdown
+    attributes:
+      value: |
+        # 🐋 Thanks for taking time to fill out this bug report!
+
+  - type: textarea
+    id: version_info
+    attributes:
+      label: "⌛ Version & Regression Information"
+      description: |
+        When did you start seeing this bug occur?
+      value: |
+        - This changed between versions ________ and ________
+        - This changed in commit or PR ________
+        - This is the behavior in every version I have tried, and I have reviewed the ["Notice" part](https://github.com/AshGreyG/Algorithm-TsTs?tab=readme-ov-file#-notice).
+        - I was unable to test this on prior versions because ________
+      validations:
+        required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: "💻 Code"
+      description: |
+        Please post the relevant code sample here as well.
+
+        You can put syntax `/** @remark */` between two lines of your code to add comments if necessary.
+      values: |
+        ``` ts
+        // Your code here
+        ```
+      validations:
+        required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: 🙁 Actual behavior
+      description: 'What happened, and why it was wrong.'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: 🙂 Expected behavior
+      description: What you expected to happen instead, and why
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: 🩹 Additional information about the issue
