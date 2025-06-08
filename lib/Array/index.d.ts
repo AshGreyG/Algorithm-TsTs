@@ -83,6 +83,25 @@ export type At<
 export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B];
 
 /**
+ * This method simulates the JavaScript spread syntax using tuple type.
+ * 
+ * @param Arr This array is a type wrapper for arrays to concat.
+ * @returns Return the array `[arr0_0, arr0_1, ...arr0_n, ..., arrM_0, arrM_1, ..., arrM_n]`,
+ * where `arr0, arr1, ..., arrM` are the elements of `Arr` and also the arrays to
+ * concat.
+ * 
+ * @example
+ * type MC1 = MultipleConcat<[[1, 2], ["t"], [true, false]]>; // [1, 2, "t", true, false]
+ * type MC2 = MultipleConcat<[[], [], [], []]>;               // []
+ */
+export type MultipleConcat<Arr extends unknown[][], Result extends unknown[] = []>
+  = Arr extends [infer F, ...infer Rest extends unknown[][]]
+    ? F extends unknown[]
+      ? MultipleConcat<Rest, [...Result, ...F]>
+      : never
+    : Result;
+
+/**
  * This method is like `Array.prototype.fill`, its behavior of over-bound indexes
  * is same with it (see [MDN docs about the details](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)).
  * It fills the array from index `Start` to `End - 1` using new value `V`.
@@ -184,7 +203,7 @@ export type IsFlatten<Arr extends unknown[]>
 /**
  * This method flattens a nested array.
  * 
- * @param Arr The nested array (or not nested, then it will return as original).
+ * @param Arr The nested array (or not nested, then it will return as origin).
  * @param Result The array to store the final result during the process procedure.
  * @returns The flattened `Arr`.
  * 
