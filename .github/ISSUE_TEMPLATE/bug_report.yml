@@ -1,7 +1,6 @@
 name: 🐛 Bug report
 description: Report an issue
 labels: [bug]
-type: Bug
 body: 
   - type: markdown
     attributes:
@@ -19,8 +18,8 @@ body:
         - This changed in commit or PR ________
         - This is the behavior in every version I have tried, and I have reviewed the ["Notice" part](https://github.com/AshGreyG/Algorithm-TsTs?tab=readme-ov-file#-notice).
         - I was unable to test this on prior versions because ________
-      validations:
-        required: true
+    validations:
+      required: true
 
   - type: textarea
     id: code
@@ -30,11 +29,11 @@ body:
         Please post the relevant code sample here as well.
 
         You can put syntax `/** @remark */` between two lines of your code to add comments if necessary.
-      values: |
+      value: |
         ``` ts
         // Your code here
         ```
-      validations:
+    validations:
         required: true
 
   - type: textarea
