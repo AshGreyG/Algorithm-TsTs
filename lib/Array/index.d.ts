@@ -53,17 +53,19 @@ export type At<
   Arr extends unknown[],
   N extends number, 
   Count extends unknown[] = []
-> = Integer.IsNegative<N> extends true
-  ? Integer.Add<N, Arr["length"]> extends number
-    ? At<Arr, Integer.Add<N, Arr["length"]>, Count>
-    : never
-  : Count["length"] extends N
-    ? Arr extends [infer F, ...infer Rest]
-      ? F
+> = Integer.Eq<Arr["length"], 0> extends true
+  ? never
+  : Integer.IsNegative<N> extends true
+    ? Integer.Add<N, Arr["length"]> extends number
+      ? At<Arr, Integer.Add<N, Arr["length"]>, Count>
       : never
-    : Arr extends [infer F, ...infer Rest]
-      ? At<Rest, N, [...Count, F]>
-      : never;
+    : Count["length"] extends N
+      ? Arr extends [infer F, ...infer Rest]
+        ? F
+        : never
+      : Arr extends [infer F, ...infer Rest]
+        ? At<Rest, N, [...Count, F]>
+        : never;
 
 /**
  * Unlike `Array.prototype.concat` method, it cannot receive unlimited type
