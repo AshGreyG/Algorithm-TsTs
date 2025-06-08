@@ -47,5 +47,8 @@ type CaseLibArray = [
   // Array.At
   Expect<Equal<Array.At<[1,2,3], 2>, 3>>,
   Expect<Equal<Array.At<[1,2,3,4], 0>, 1>>,
+  Expect<Equal<Array.At<[], 1>, never>>,
+  Expect<Equal<Array.At<[], -1>, never>>,
+  Expect<Equal<Array.At<[], 0>, never>>,
 
 ]
