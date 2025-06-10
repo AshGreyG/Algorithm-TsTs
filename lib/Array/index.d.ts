@@ -1,3 +1,4 @@
+import { Equal } from "../../utils";
 import Integer from "../Integer";
 import Boolean from "../Boolean";
 
@@ -218,6 +219,23 @@ export type Flat<Arr extends unknown[], Result extends unknown[] = []>
       : Flat<Rest, [...Result, F]>
     : Result;
 
+/**
+ * This method checks if an element is in an array. It uses `Equal` in utils.
+ * 
+ * @param Arr The array to check if have an element.
+ * @param T The element to check if is in an array.
+ * 
+ * @example
+ * type Includes1 = Array.Includes<[1, 2, 3], 1>;     // true
+ * type Includes2 = Array.Includes<[1, 2, 3], never>; // false
+ * type Includes3 = Array.Includes<[true], true>;     // true
+ */
+export type Includes<Arr extends unknown[], T extends unknown>
+  = Arr extends [infer F, ...infer Rest]
+    ? Equal<F, T> extends true
+      ? true
+      : Includes<Rest, T>
+    : false;
 
 }
 
