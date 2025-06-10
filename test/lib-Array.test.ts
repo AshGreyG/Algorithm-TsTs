@@ -17,6 +17,11 @@ type CaseLibArray = [
   Expect<Equal<Array.CreateArrayFromLength<0>, []>>,
   Expect<Equal<Array.CreateArrayFromLength<-1>, []>>,
 
+  // Array.MultipleConcat
+  Expect<Equal<Array.MultipleConcat<[[1,2,3],[4,2,3],[undefined,true]]>, [1,2,3,4,2,3,undefined,true]>>,
+  Expect<Equal<Array.MultipleConcat<[[],[1],[],[2]]>, [1,2]>>,
+  Expect<Equal<Array.MultipleConcat<[[[2]],[1]]>, [[2],1]>>,
+
   // Array.Flat
   Expect<Equal<Array.Flat<[1,2,3]>, [1,2,3]>>,
   Expect<Equal<Array.Flat<[1,2,3,[]]>, [1,2,3]>>,
@@ -25,6 +30,21 @@ type CaseLibArray = [
   Expect<Equal<Array.Flat<[]>, []>>,
   Expect<Equal<Array.Flat<[[]]>, []>>,
   Expect<Equal<Array.Flat<[[[1]]]>, [1]>>,
+
+  // Array.Includes
+  Expect<Equal<Array.Includes<[1,2,3], 1>, true>>,
+  Expect<Equal<Array.Includes<[1,2,3], -1>, false>>,
+  Expect<Equal<Array.Includes<[], "">, false>>,
+  Expect<Equal<Array.Includes<[""], "">, true>>,
+  Expect<Equal<Array.Includes<[[]], []>, true>>,
+  Expect<Equal<Array.Includes<[[1]], 1>, false>>,
+
+  // Array.IndexOf
+  Expect<Equal<Array.IndexOf<[1,2,3], 1>, 0>>,
+  Expect<Equal<Array.IndexOf<[1,[2],3], [2]>, 1>>,
+  Expect<Equal<Array.IndexOf<[], 0>, -1>>,
+  Expect<Equal<Array.IndexOf<[1,2,3], 4>, -1>>,
+  Expect<Equal<Array.IndexOf<[1,2,1], 1>, 0>>,
 
   // Array.IsFlatten
   Expect<Equal<Array.IsFlatten<[1,2,3]>, true>>,

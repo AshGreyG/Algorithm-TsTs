@@ -1,3 +1,4 @@
+import { Equal } from "../../utils";
 import Integer from "../Integer";
 import Boolean from "../Boolean";
 
@@ -81,6 +82,25 @@ export type At<
  * type Concat2 = Concat<["🐒", 2, 9n], [true, 0]>; // ["🐒", 2, 9n, true, 0]
  */
 export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B];
+
+/**
+ * This method simulates the JavaScript spread syntax using tuple type.
+ * 
+ * @param Arr This array is a type wrapper for arrays to concat.
+ * @returns Return the array `[arr0_0, arr0_1, ...arr0_n, ..., arrM_0, arrM_1, ..., arrM_n]`,
+ * where `arr0, arr1, ..., arrM` are the elements of `Arr` and also the arrays to
+ * concat.
+ * 
+ * @example
+ * type MC1 = MultipleConcat<[[1, 2], ["t"], [true, false]]>; // [1, 2, "t", true, false]
+ * type MC2 = MultipleConcat<[[], [], [], []]>;               // []
+ */
+export type MultipleConcat<Arr extends unknown[][], Result extends unknown[] = []>
+  = Arr extends [infer F, ...infer Rest extends unknown[][]]
+    ? F extends unknown[]
+      ? MultipleConcat<Rest, [...Result, ...F]>
+      : never
+    : Result;
 
 /**
  * This method is like `Array.prototype.fill`, its behavior of over-bound indexes
@@ -184,7 +204,7 @@ export type IsFlatten<Arr extends unknown[]>
 /**
  * This method flattens a nested array.
  * 
- * @param Arr The nested array (or not nested, then it will return as original).
+ * @param Arr The nested array (or not nested, then it will return as origin).
  * @param Result The array to store the final result during the process procedure.
  * @returns The flattened `Arr`.
  * 
@@ -199,6 +219,46 @@ export type Flat<Arr extends unknown[], Result extends unknown[] = []>
       : Flat<Rest, [...Result, F]>
     : Result;
 
+/**
+ * This method checks if an element is in an array. It uses `Equal` in utils.
+ * 
+ * @param Arr The array to check if have an element.
+ * @param T The element to check if is in an array.
+ * 
+ * @example
+ * type Includes1 = Array.Includes<[1, 2, 3], 1>;     // true
+ * type Includes2 = Array.Includes<[1, 2, 3], never>; // false
+ * type Includes3 = Array.Includes<[true], true>;     // true
+ */
+export type Includes<Arr extends unknown[], T extends unknown>
+  = Arr extends [infer F, ...infer Rest]
+    ? Equal<F, T> extends true
+      ? true
+      : Includes<Rest, T>
+    : false;
+
+/**
+ * This method returns the first encounter index of element `T` in array `Arr`.
+ * 
+ * @param Arr The array to be checked.
+ * @param T The element to check the first encounter index.
+ * @param Count Middle variable to store the scanning state.
+ * @returns The first encounter index of element `T` in array `Arr`.
+ * 
+ * @example
+ * type Index1 = Array.IndexOf<[1, 2, 3], 1>; // 0
+ * type Index2 = Array.IndexOf<[1, 2, 3], 3>; // 2
+ * type Index3 = Array.IndexOf<[1, 2, 3], 0>; // -1
+ */
+export type IndexOf<
+  Arr extends unknown[], 
+  T extends unknown,
+  Count extends 0[] = []
+> = Arr extends [infer F, ...infer Rest]
+  ? Equal<F, T> extends true
+    ? Count["length"]
+    : IndexOf<Rest, T, [...Count, 0]>
+  : -1;
 
 }
 
