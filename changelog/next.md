@@ -30,6 +30,7 @@
 + Add two new methods of `Array` namespace:
   + `Array.Includes<Arr, T>`
   + `Array.IndexOf<Arr, T>`
+  + `Array.MultipleConcat<Array[]>`
 
 ## ⚡ Improvements
 
