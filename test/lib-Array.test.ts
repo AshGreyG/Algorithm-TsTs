@@ -17,6 +17,11 @@ type CaseLibArray = [
   Expect<Equal<Array.CreateArrayFromLength<0>, []>>,
   Expect<Equal<Array.CreateArrayFromLength<-1>, []>>,
 
+  // Array.MultipleConcat
+  Expect<Equal<Array.MultipleConcat<[[1,2,3],[4,2,3],[undefined,true]]>, [1,2,3,4,2,3,undefined,true]>>,
+  Expect<Equal<Array.MultipleConcat<[[],[1],[],[2]]>, [1,2]>>,
+  Expect<Equal<Array.MultipleConcat<[[[2]],[1]]>, [[2],1]>>,
+
   // Array.Flat
   Expect<Equal<Array.Flat<[1,2,3]>, [1,2,3]>>,
   Expect<Equal<Array.Flat<[1,2,3,[]]>, [1,2,3]>>,
