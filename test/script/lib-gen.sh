@@ -30,6 +30,7 @@ declare -A test_cases=(
   ["Array.IsFlatten"]="[1,2,3]:true []:true [[]]:false [1,[2],3]:false [[],1,2]:false [1,[1,2,[]],undefined]:false"
   ["Array.Flat"]="[1,2,3]:[1,2,3] [1,2,3,[]]:[1,2,3] [1,2,[3]]:[1,2,3] [1,2,[3,[0]]]:[1,2,3,0] []:[] [[]]:[] [[[1]]]:[1]"
   ["Array.Includes"]="[1,2,3]|1:true [1,2,3]|-1:false []|\"\":false [\"\"]|\"\":true [[]]|[]:true [[1]]|1:false"
+  ["Array.IndexOf"]="[1,2,3]|1:0 [1,[2],3]|[2]:1 []|0:-1 [1,2,3]|4:-1 [1,2,1]|1:0"
 
   ["BigInteger.ToString"]="2n:\"2\" -2n:\"-2\" 0n:\"0\""
   ["BigInteger.IsNegative"]="-23n:true 26n:false 0n:false"

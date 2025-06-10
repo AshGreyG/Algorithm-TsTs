@@ -34,6 +34,13 @@ type CaseLibArray = [
   Expect<Equal<Array.Includes<[[]], []>, true>>,
   Expect<Equal<Array.Includes<[[1]], 1>, false>>,
 
+  // Array.IndexOf
+  Expect<Equal<Array.IndexOf<[1,2,3], 1>, 0>>,
+  Expect<Equal<Array.IndexOf<[1,[2],3], [2]>, 1>>,
+  Expect<Equal<Array.IndexOf<[], 0>, -1>>,
+  Expect<Equal<Array.IndexOf<[1,2,3], 4>, -1>>,
+  Expect<Equal<Array.IndexOf<[1,2,1], 1>, 0>>,
+
   // Array.IsFlatten
   Expect<Equal<Array.IsFlatten<[1,2,3]>, true>>,
   Expect<Equal<Array.IsFlatten<[]>, true>>,
