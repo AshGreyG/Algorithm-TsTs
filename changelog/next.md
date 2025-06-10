@@ -25,6 +25,12 @@
   + `Boolean.MultipleAnd<[boolean]>`
   + `Boolean.MultipleOr<[boolean]>`
 
+### 2025-06-10 (feature/array-methods → main)
+
++ Add two new methods of `Array` namespace:
+  + `Array.Includes<Arr, T>`
+  + `Array.IndexOf<Arr, T>`
+
 ## ⚡ Improvements
 
 ## 🐦‍🔥 No longer broken
