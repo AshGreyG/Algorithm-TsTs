@@ -26,6 +26,14 @@ type CaseLibArray = [
   Expect<Equal<Array.Flat<[[]]>, []>>,
   Expect<Equal<Array.Flat<[[[1]]]>, [1]>>,
 
+  // Array.Includes
+  Expect<Equal<Array.Includes<[1,2,3], 1>, true>>,
+  Expect<Equal<Array.Includes<[1,2,3], -1>, false>>,
+  Expect<Equal<Array.Includes<[], "">, false>>,
+  Expect<Equal<Array.Includes<[""], "">, true>>,
+  Expect<Equal<Array.Includes<[[]], []>, true>>,
+  Expect<Equal<Array.Includes<[[1]], 1>, false>>,
+
   // Array.IsFlatten
   Expect<Equal<Array.IsFlatten<[1,2,3]>, true>>,
   Expect<Equal<Array.IsFlatten<[]>, true>>,
