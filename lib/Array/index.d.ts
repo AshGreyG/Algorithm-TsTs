@@ -237,6 +237,29 @@ export type Includes<Arr extends unknown[], T extends unknown>
       : Includes<Rest, T>
     : false;
 
+/**
+ * This method returns the first encounter index of element `T` in array `Arr`.
+ * 
+ * @param Arr The array to be checked.
+ * @param T The element to check the first encounter index.
+ * @param Count Middle variable to store the scanning state.
+ * @returns The first encounter index of element `T` in array `Arr`.
+ * 
+ * @example
+ * type Index1 = Array.IndexOf<[1, 2, 3], 1>; // 0
+ * type Index2 = Array.IndexOf<[1, 2, 3], 3>; // 2
+ * type Index3 = Array.IndexOf<[1, 2, 3], 0>; // -1
+ */
+export type IndexOf<
+  Arr extends unknown[], 
+  T extends unknown,
+  Count extends 0[] = []
+> = Arr extends [infer F, ...infer Rest]
+  ? Equal<F, T> extends true
+    ? Count["length"]
+    : IndexOf<Rest, T, [...Count, 0]>
+  : -1;
+
 }
 
 export default Array;
