@@ -288,6 +288,17 @@ export type Add<A extends number, B extends number>
             : A
         : B;
 
+/**
+ * This method returns the successor of current number.
+ * 
+ * @param A The number to take successor.
+ * @returns The successor of current number.
+ * 
+ * @example
+ * type Inc1 = Integer.Inc<-23>;  // -22
+ * type Inc2 = Integer.Inc<-1>;   // 0
+ * type Inc3 = Integer.Inc<3>;    // 4
+ */
 export type Inc<A extends number> = Add<A, 1>;
 
 export type Sub<A extends number, B extends number, Count extends number[] = []>
