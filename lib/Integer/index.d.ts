@@ -15,6 +15,7 @@ declare namespace Integer {
  * hexadecimal, octal and binary.
  * 
  * @param A The number to convert to string.
+ * @returns The string representation of current number.
  * 
  * @example
  * type Num1 = Integer.ToString<3>;   // "3"
@@ -27,6 +28,7 @@ export type ToString<A extends number> = `${A}`;
  * This method checks if a number is negative.
  * 
  * @param A The number to check if is negative.
+ * @returns If current number is negative, then returns `true`, else `false`.
  * 
  * @example
  * type Is1 = Integer.IsNegative<1>;  // false
@@ -39,6 +41,7 @@ export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends n
  * This method checks if a number is positive.
  * 
  * @param A The number to check if is positive.
+ * @returns If current number is positive, then returns `true`, else `false`.
  * 
  * @example
  * type Is1 = Integer.IsPositive<1>;  // true
@@ -56,6 +59,7 @@ export type IsPositive<A extends number>
  * This method checks if a number is zero.
  * 
  * @param A The number to check if is zero.
+ * @returns If current number is zero, then returns `true`, else `false`
  * 
  * @example
  * type Is1 = Integer.IsZero<1>;  // false
@@ -68,6 +72,7 @@ export type IsZero<A extends number> = A extends 0 ? true : false;
  * This method gets the opposite of a number.
  * 
  * @param A The number to be got opposite.
+ * @returns The opposite number of current number.
  * 
  * @example
  * type Opposite1 = Integer.Opposite<3>;  // -3
@@ -92,6 +97,8 @@ export type Opposite<A extends number>
  * @param Count The middle status type variable to store the 
  * middle result, when `A extends B` is true, this method will return the
  * `Count["length"]`, and that's the answer.
+ * @returns This method only supports calculate `a - b` where `a` and `b` is
+ * non-negative and `a > b`. The method returns the result of `a - b`.
  * 
  * @example
  * // Notice that this type is not exported, it's an internal helper method.
@@ -112,6 +119,7 @@ type _PositiveSub<A extends number, B extends number, Count extends number[] = [
  * 
  * @param A `a` in `if a < b` expression.
  * @param B `b` in `if a < b` expression.
+ * @returns If `a` is lower than `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Lower1 = Integer.Lower<-34, 2>;   // true
@@ -152,6 +160,7 @@ export type Lower<A extends number, B extends number>
  * 
  * @param A `a` in `if a > b` expression.
  * @param B `b` in `if a > b` expression.
+ * @returns If `a` is greater than `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Greater1 = Integer.Greater<-34, 2>;   // false
@@ -174,6 +183,7 @@ export type Greater<A extends number, B extends number>
  * 
  * @param A `a` in `if a == b` expression.
  * @param B `b` in `if a == b` expression.
+ * @returns If `a` is equal to `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Eq1 = Integer.Eq<-34, 2>;   // false
@@ -191,6 +201,7 @@ export type Eq<A extends number, B extends number> = A extends B ? true : false;
  * 
  * @param A `a` in `if a != b` expression.
  * @param B `b` in `if a != b` expression.
+ * @returns If `a` is not equal to `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Neq1 = Integer.Neq<-34, 2>;   // true
@@ -208,6 +219,8 @@ export type Neq<A extends number, B extends number> = A extends B ? false : true
  * 
  * @param A `a` in `if a <= b` expression.
  * @param B `b` in `if a <= b` expression.
+ * @returns If `a` is lower than or equal to `b`, then returns `true`, if not,
+ * returns `false`.
  * 
  * @example
  * type LowerEq1 = Integer.LowerEq<-34, 2>;   // true
@@ -230,6 +243,8 @@ export type LowerEq<A extends number, B extends number>
  * 
  * @param A `a` in `if a >= b` expression.
  * @param B `b` in `if a >= b` expression.
+ * @returns If `a` is greater than or equal to `b`, then returns `true`, if not,
+ * returns `false`.
  * 
  * @example
  * type GreaterEq1 = Integer.GreaterEq<-34, 2>;   // false
@@ -252,6 +267,7 @@ export type GreaterEq<A extends number, B extends number>
  * 
  * @param A `a` in `a + b` expression
  * @param B `b` in `a + b` expression
+ * @returns Return the result of expression `a + b`.
  * 
  * @example
  * type Add1 = Integer.Add<1, 2>;   // 3
@@ -301,6 +317,14 @@ export type Add<A extends number, B extends number>
  */
 export type Inc<A extends number> = Add<A, 1>;
 
+/**
+ * This method subs two numbers.
+ * 
+ * @param A `a` in `a - b` expression.
+ * @param B `b` in `a - b` expression.
+ * 
+ * 
+ */
 export type Sub<A extends number, B extends number, Count extends number[] = []>
   = A extends B
     ? Count["length"]
