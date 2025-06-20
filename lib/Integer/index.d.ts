@@ -322,8 +322,13 @@ export type Inc<A extends number> = Add<A, 1>;
  * 
  * @param A `a` in `a - b` expression.
  * @param B `b` in `a - b` expression.
+ * @returns The result of expression `a - b`.
  * 
- * 
+ * @example
+ * type Sub1 = Integer.Sub<1, 1>;   // 0
+ * type Sub2 = Integer.Sub<-2, 1>;  // -3
+ * type Sub3 = Integer.Sub<3, 1>;   // 2
+ * type Sub4 = Integer.Sub<-4, -4>; // 0
  */
 export type Sub<A extends number, B extends number, Count extends number[] = []>
   = A extends B
@@ -350,8 +355,22 @@ export type Sub<A extends number, B extends number, Count extends number[] = []>
             : A
         : Opposite<B>;
 
+/**
+ * This method returns the predecessor of current number.
+ * 
+ * @param A The number to take predecessor.
+ * @returns The predecessor of current number.
+ * 
+ * @example
+ * type Dec1 = Integer.Dec<-11>;  // -12
+ * type Dec2 = Integer.Dec<12>;   // 11
+ * type Dec3 = Integer.Dec<1>;    // 0
+ */
 export type Dec<A extends number> = Sub<A, 1>;
 
+/**
+ * @todo This method needs correct implementation.
+ */
 export type Multiply<A extends number, B extends number, Count extends number = 0>
   = IsPositive<A> extends true
     ? IsPositive<B> extends true
@@ -377,6 +396,21 @@ export type Multiply<A extends number, B extends number, Count extends number = 
         ? 0
         : never;
 
+/**
+ * This method returns the quotient in exact division.
+ * 
+ * @param A `a` in `a / b` expression, where `/` is the exact division symbol.
+ * @param B `b` in `a / b` expression, where `/` is the exact division symbol.
+ * @returns The quotient in exact division, which is the result of expression
+ * `a / b`, where `/` is the exact division symbol. When the divisor is 0, this
+ * method returns `never`.
+ * 
+ * @example
+ * type Divide1 = Integer.Divide<5, 2>;   // 2
+ * type Divide2 = Integer.Divide<5, 0>;   // never
+ * type Divide3 = Integer.Divide<2, 3>;   // 0
+ * type Divide4 = Integer.Divide<-5, 2>;  // -2
+ */
 export type Divide<
   A extends number, 
   B extends number, 
@@ -407,6 +441,21 @@ export type Divide<
         ? 0
         : never;
 
+/**
+ * This method returns the remainder in exact division.
+ * 
+ * @param A `a` in expression `a mod b`.
+ * @param B `b` in expression `a mod b`.
+ * @returns The remainder in exact division, which is the result of expression
+ * `a mod b`. When the divisor is 0, then this method returns `never`.
+ * 
+ * @example
+ * type Mod1 = Integer.Mod<2, 2>;   // 0
+ * type Mod2 = Integer.Mod<3, 2>;   // 1
+ * type Mod3 = Integer.Mod<-3, -2>; // 1
+ * type Mod4 = Integer.Mod<-3, 2>;  // -1
+ * type Mod5 = Integer.Mod<3, 0>;   // never
+ */
 export type Mod<
   A extends number, 
   B extends number, 
@@ -433,11 +482,37 @@ export type Mod<
         ? 0
         : never;
 
+/**
+ * This method checks if current number is odd by detecting the ending digital.
+ * 
+ * @param A The number to check if odd.
+ * @returns If `A` is odd, returns `true`, if not, returns `false`.
+ * 
+ * @example
+ * type Odd1 = Integer.Odd<1>;    // true
+ * type Odd2 = Integer.Odd<123>;  // true
+ * type Odd3 = Integer.Odd<-1>;   // true
+ * type Odd4 = Integer.Odd<0>;    // false
+ * type Odd5 = Integer.Odd<2>;    // false
+ */
 export type IsOdd<A extends number> 
   = `${A}` extends `${infer Rest}${"1" | "3" | "5" | "7" | "9"}`
     ? true
     : false;
 
+/**
+ * This method checks if current number is even by detecting the ending digital.
+ * 
+ * @param A The number to check if even.
+ * @returns If `A` is even, returns `true`, if not, returns `false`.
+ * 
+ * @example
+ * type Odd1 = Integer.Odd<1>;    // false
+ * type Odd2 = Integer.Odd<123>;  // false
+ * type Odd3 = Integer.Odd<-1>;   // false
+ * type Odd4 = Integer.Odd<0>;    // true
+ * type Odd5 = Integer.Odd<2>;    // true
+ */
 export type IsEven<A extends number>
   = `${A}` extends `${infer Rest}${"0" | "2" | "4" | "6" | "8"}`
     ? true
