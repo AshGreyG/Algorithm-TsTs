@@ -15,11 +15,12 @@ declare namespace Integer {
  * hexadecimal, octal and binary.
  * 
  * @param A The number to convert to string.
+ * @returns The string representation of current number.
  * 
  * @example
- * type Num1 = Integer.ToString<3>;   // => "3"
- * type Num2 = Integer.ToString<0>;   // => "0"
- * type Num3 = Integer.ToString<-3>;  // => "-3"
+ * type Num1 = Integer.ToString<3>;   // "3"
+ * type Num2 = Integer.ToString<0>;   // "0"
+ * type Num3 = Integer.ToString<-3>;  // "-3"
  */
 export type ToString<A extends number> = `${A}`;
 
@@ -27,11 +28,12 @@ export type ToString<A extends number> = `${A}`;
  * This method checks if a number is negative.
  * 
  * @param A The number to check if is negative.
+ * @returns If current number is negative, then returns `true`, else `false`.
  * 
  * @example
- * type Is1 = Integer.IsNegative<1>;  // => false
- * type Is2 = Integer.IsNegative<0>;  // => false
- * type Is3 = Integer.IsNegative<-2>; // => true
+ * type Is1 = Integer.IsNegative<1>;  // false
+ * type Is2 = Integer.IsNegative<0>;  // false
+ * type Is3 = Integer.IsNegative<-2>; // true
  */
 export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends number}` ? true : false;
 
@@ -39,11 +41,12 @@ export type IsNegative<A extends number> = `${A}` extends `-${infer OA extends n
  * This method checks if a number is positive.
  * 
  * @param A The number to check if is positive.
+ * @returns If current number is positive, then returns `true`, else `false`.
  * 
  * @example
- * type Is1 = Integer.IsPositive<1>;  // => true
- * type Is2 = Integer.IsPositive<0>;  // => false
- * type Is3 = Integer.IsPositive<-2>; // => false
+ * type Is1 = Integer.IsPositive<1>;  // true
+ * type Is2 = Integer.IsPositive<0>;  // false
+ * type Is3 = Integer.IsPositive<-2>; // false
  */
 export type IsPositive<A extends number>
   = IsNegative<A> extends false
@@ -56,11 +59,12 @@ export type IsPositive<A extends number>
  * This method checks if a number is zero.
  * 
  * @param A The number to check if is zero.
+ * @returns If current number is zero, then returns `true`, else `false`
  * 
  * @example
- * type Is1 = Integer.IsZero<1>;  // => false
- * type Is2 = Integer.IsZero<0>;  // => true
- * type Is3 = Integer.IsZero<-2>; // => false
+ * type Is1 = Integer.IsZero<1>;  // false
+ * type Is2 = Integer.IsZero<0>;  // true
+ * type Is3 = Integer.IsZero<-2>; // false
  */
 export type IsZero<A extends number> = A extends 0 ? true : false;
 
@@ -68,6 +72,7 @@ export type IsZero<A extends number> = A extends 0 ? true : false;
  * This method gets the opposite of a number.
  * 
  * @param A The number to be got opposite.
+ * @returns The opposite number of current number.
  * 
  * @example
  * type Opposite1 = Integer.Opposite<3>;  // -3
@@ -92,6 +97,8 @@ export type Opposite<A extends number>
  * @param Count The middle status type variable to store the 
  * middle result, when `A extends B` is true, this method will return the
  * `Count["length"]`, and that's the answer.
+ * @returns This method only supports calculate `a - b` where `a` and `b` is
+ * non-negative and `a > b`. The method returns the result of `a - b`.
  * 
  * @example
  * // Notice that this type is not exported, it's an internal helper method.
@@ -112,6 +119,7 @@ type _PositiveSub<A extends number, B extends number, Count extends number[] = [
  * 
  * @param A `a` in `if a < b` expression.
  * @param B `b` in `if a < b` expression.
+ * @returns If `a` is lower than `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Lower1 = Integer.Lower<-34, 2>;   // true
@@ -152,6 +160,7 @@ export type Lower<A extends number, B extends number>
  * 
  * @param A `a` in `if a > b` expression.
  * @param B `b` in `if a > b` expression.
+ * @returns If `a` is greater than `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Greater1 = Integer.Greater<-34, 2>;   // false
@@ -174,6 +183,7 @@ export type Greater<A extends number, B extends number>
  * 
  * @param A `a` in `if a == b` expression.
  * @param B `b` in `if a == b` expression.
+ * @returns If `a` is equal to `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Eq1 = Integer.Eq<-34, 2>;   // false
@@ -191,6 +201,7 @@ export type Eq<A extends number, B extends number> = A extends B ? true : false;
  * 
  * @param A `a` in `if a != b` expression.
  * @param B `b` in `if a != b` expression.
+ * @returns If `a` is not equal to `b`, then returns `true`, if not, returns `false`.
  * 
  * @example
  * type Neq1 = Integer.Neq<-34, 2>;   // true
@@ -208,6 +219,8 @@ export type Neq<A extends number, B extends number> = A extends B ? false : true
  * 
  * @param A `a` in `if a <= b` expression.
  * @param B `b` in `if a <= b` expression.
+ * @returns If `a` is lower than or equal to `b`, then returns `true`, if not,
+ * returns `false`.
  * 
  * @example
  * type LowerEq1 = Integer.LowerEq<-34, 2>;   // true
@@ -230,6 +243,8 @@ export type LowerEq<A extends number, B extends number>
  * 
  * @param A `a` in `if a >= b` expression.
  * @param B `b` in `if a >= b` expression.
+ * @returns If `a` is greater than or equal to `b`, then returns `true`, if not,
+ * returns `false`.
  * 
  * @example
  * type GreaterEq1 = Integer.GreaterEq<-34, 2>;   // false
@@ -252,6 +267,7 @@ export type GreaterEq<A extends number, B extends number>
  * 
  * @param A `a` in `a + b` expression
  * @param B `b` in `a + b` expression
+ * @returns Return the result of expression `a + b`.
  * 
  * @example
  * type Add1 = Integer.Add<1, 2>;   // 3
@@ -288,8 +304,32 @@ export type Add<A extends number, B extends number>
             : A
         : B;
 
+/**
+ * This method returns the successor of current number.
+ * 
+ * @param A The number to take successor.
+ * @returns The successor of current number.
+ * 
+ * @example
+ * type Inc1 = Integer.Inc<-23>;  // -22
+ * type Inc2 = Integer.Inc<-1>;   // 0
+ * type Inc3 = Integer.Inc<3>;    // 4
+ */
 export type Inc<A extends number> = Add<A, 1>;
 
+/**
+ * This method subs two numbers.
+ * 
+ * @param A `a` in `a - b` expression.
+ * @param B `b` in `a - b` expression.
+ * @returns The result of expression `a - b`.
+ * 
+ * @example
+ * type Sub1 = Integer.Sub<1, 1>;   // 0
+ * type Sub2 = Integer.Sub<-2, 1>;  // -3
+ * type Sub3 = Integer.Sub<3, 1>;   // 2
+ * type Sub4 = Integer.Sub<-4, -4>; // 0
+ */
 export type Sub<A extends number, B extends number, Count extends number[] = []>
   = A extends B
     ? Count["length"]
@@ -315,8 +355,22 @@ export type Sub<A extends number, B extends number, Count extends number[] = []>
             : A
         : Opposite<B>;
 
+/**
+ * This method returns the predecessor of current number.
+ * 
+ * @param A The number to take predecessor.
+ * @returns The predecessor of current number.
+ * 
+ * @example
+ * type Dec1 = Integer.Dec<-11>;  // -12
+ * type Dec2 = Integer.Dec<12>;   // 11
+ * type Dec3 = Integer.Dec<1>;    // 0
+ */
 export type Dec<A extends number> = Sub<A, 1>;
 
+/**
+ * @todo This method needs correct implementation.
+ */
 export type Multiply<A extends number, B extends number, Count extends number = 0>
   = IsPositive<A> extends true
     ? IsPositive<B> extends true
@@ -342,6 +396,21 @@ export type Multiply<A extends number, B extends number, Count extends number = 
         ? 0
         : never;
 
+/**
+ * This method returns the quotient in exact division.
+ * 
+ * @param A `a` in `a / b` expression, where `/` is the exact division symbol.
+ * @param B `b` in `a / b` expression, where `/` is the exact division symbol.
+ * @returns The quotient in exact division, which is the result of expression
+ * `a / b`, where `/` is the exact division symbol. When the divisor is 0, this
+ * method returns `never`.
+ * 
+ * @example
+ * type Divide1 = Integer.Divide<5, 2>;   // 2
+ * type Divide2 = Integer.Divide<5, 0>;   // never
+ * type Divide3 = Integer.Divide<2, 3>;   // 0
+ * type Divide4 = Integer.Divide<-5, 2>;  // -2
+ */
 export type Divide<
   A extends number, 
   B extends number, 
@@ -372,6 +441,21 @@ export type Divide<
         ? 0
         : never;
 
+/**
+ * This method returns the remainder in exact division.
+ * 
+ * @param A `a` in expression `a mod b`.
+ * @param B `b` in expression `a mod b`.
+ * @returns The remainder in exact division, which is the result of expression
+ * `a mod b`. When the divisor is 0, then this method returns `never`.
+ * 
+ * @example
+ * type Mod1 = Integer.Mod<2, 2>;   // 0
+ * type Mod2 = Integer.Mod<3, 2>;   // 1
+ * type Mod3 = Integer.Mod<-3, -2>; // 1
+ * type Mod4 = Integer.Mod<-3, 2>;  // -1
+ * type Mod5 = Integer.Mod<3, 0>;   // never
+ */
 export type Mod<
   A extends number, 
   B extends number, 
@@ -398,11 +482,37 @@ export type Mod<
         ? 0
         : never;
 
+/**
+ * This method checks if current number is odd by detecting the ending digital.
+ * 
+ * @param A The number to check if odd.
+ * @returns If `A` is odd, returns `true`, if not, returns `false`.
+ * 
+ * @example
+ * type Odd1 = Integer.Odd<1>;    // true
+ * type Odd2 = Integer.Odd<123>;  // true
+ * type Odd3 = Integer.Odd<-1>;   // true
+ * type Odd4 = Integer.Odd<0>;    // false
+ * type Odd5 = Integer.Odd<2>;    // false
+ */
 export type IsOdd<A extends number> 
   = `${A}` extends `${infer Rest}${"1" | "3" | "5" | "7" | "9"}`
     ? true
     : false;
 
+/**
+ * This method checks if current number is even by detecting the ending digital.
+ * 
+ * @param A The number to check if even.
+ * @returns If `A` is even, returns `true`, if not, returns `false`.
+ * 
+ * @example
+ * type Odd1 = Integer.Odd<1>;    // false
+ * type Odd2 = Integer.Odd<123>;  // false
+ * type Odd3 = Integer.Odd<-1>;   // false
+ * type Odd4 = Integer.Odd<0>;    // true
+ * type Odd5 = Integer.Odd<2>;    // true
+ */
 export type IsEven<A extends number>
   = `${A}` extends `${infer Rest}${"0" | "2" | "4" | "6" | "8"}`
     ? true
