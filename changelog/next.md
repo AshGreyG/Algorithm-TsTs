@@ -32,6 +32,11 @@
   + `Array.IndexOf<Arr, T>`
   + `Array.MultipleConcat<Array[]>`
 
+### 2025-06-26 (feature/array-methods → main)
+
++ Add a new method of `Array` namespace:
+  + `Array.Join<Arr, Sep>`
+
 ## ⚡ Improvements
 
 ## 🐦‍🔥 No longer broken
