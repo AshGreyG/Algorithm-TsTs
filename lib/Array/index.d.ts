@@ -1,4 +1,4 @@
-import { Equal } from "../../utils";
+import { Equal, Primitive } from "../../utils";
 import Integer from "../Integer";
 import Boolean from "../Boolean";
 
@@ -259,6 +259,27 @@ export type IndexOf<
     ? Count["length"]
     : IndexOf<Rest, T, [...Count, 0]>
   : -1;
+
+/**
+ * This method is like `Array.prototype.join`, it creates and returns a new string by 
+ * concatenating all of the elements in this array, separated by commas or a specified 
+ * separator string.
+ * 
+ * @param Arr The array containing elements to be joined.
+ * @param Sep The specified separator, default to `","`.
+ * @param Result A string to store the final joined result.
+ * @param Count Middle variable to store the scanning state.
+ */
+export type Join<
+  Arr extends Primitive[], 
+  Sep extends string = ",",
+  Result extends string = "",
+  Count extends 0[] = [],
+> = Arr extends [infer F extends Primitive, ...infer Rest extends Primitive[]]
+  ? Integer.Eq<Count["length"], 0> extends true
+    ? Join<Rest, Sep, `${F}`, [...Count, 0]>
+    : Join<Rest, Sep, `${Result}${Sep}${F}`, [...Count, 0]>
+  : Result;
 
 }
 
