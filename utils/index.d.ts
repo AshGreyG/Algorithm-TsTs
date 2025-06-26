@@ -33,3 +33,11 @@ export type UnionToIntersections<U>
     (k: infer I) => void
       ? I
       : never;
+
+export type Primitive =
+  | string
+  | number
+  | bigint
+  | boolean
+  | undefined
+  | null;
