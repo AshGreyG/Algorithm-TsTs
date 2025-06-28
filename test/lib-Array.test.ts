@@ -31,6 +31,11 @@ type CaseLibArray = [
   Expect<Equal<Array.Flat<[[]]>, []>>,
   Expect<Equal<Array.Flat<[[[1]]]>, [1]>>,
 
+  // Array.Join
+  Expect<Equal<Array.Join<[1,2,3]>, "1,2,3">>,
+  Expect<Equal<Array.Join<[-1,".",9], "-">, "-1-.-9">>,
+  Expect<Equal<Array.Join<[1,2,3], "">, "123">>,
+
   // Array.Includes
   Expect<Equal<Array.Includes<[1,2,3], 1>, true>>,
   Expect<Equal<Array.Includes<[1,2,3], -1>, false>>,
