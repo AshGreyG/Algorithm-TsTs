@@ -318,6 +318,20 @@ export type Pop<
     ? PopElement
     : never;
 
+/**
+ * This method is like `Array.prototype.push`, it returns the new array that
+ * has been pushed the new element.
+ * 
+ * @param Arr The array to be pushed.
+ * @param E The new element to be pushed into the `Arr`.
+ * @returns The new array.
+ * 
+ * @example
+ * type Push1 = Array.Push<[1, 2, 3], "1">; // [1, 2, 3, "1"]
+ * type Push2 = Array.Push<[], 1>;          // [1]
+ */
+export type Push<Arr extends unknown[], E extends unknown> = [...Arr, E];
+
 }
 
 export default Array;
