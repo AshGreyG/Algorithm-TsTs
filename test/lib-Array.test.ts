@@ -31,6 +31,11 @@ type CaseLibArray = [
   Expect<Equal<Array.Flat<[[]]>, []>>,
   Expect<Equal<Array.Flat<[[[1]]]>, [1]>>,
 
+  // Array.Join
+  Expect<Equal<Array.Join<[1,2,3]>, "1,2,3">>,
+  Expect<Equal<Array.Join<[-1,".",9], "-">, "-1-.-9">>,
+  Expect<Equal<Array.Join<[1,2,3], "">, "123">>,
+
   // Array.Includes
   Expect<Equal<Array.Includes<[1,2,3], 1>, true>>,
   Expect<Equal<Array.Includes<[1,2,3], -1>, false>>,
@@ -53,6 +58,19 @@ type CaseLibArray = [
   Expect<Equal<Array.IsFlatten<[1,[2],3]>, false>>,
   Expect<Equal<Array.IsFlatten<[[],1,2]>, false>>,
   Expect<Equal<Array.IsFlatten<[1,[1,2,[]],undefined]>, false>>,
+
+  // Array.Push
+  Expect<Equal<Array.Push<[1,2,3], "1">, [1,2,3,"1"]>>,
+  Expect<Equal<Array.Push<[], 1>, [1]>>,
+  Expect<Equal<Array.Push<[], []>, [[]]>>,
+
+  // Array.Pop
+  Expect<Equal<Array.Pop<[1,2,3]>, [1,2]>>,
+  Expect<Equal<Array.Pop<[1], "get-rest">, []>>,
+  Expect<Equal<Array.Pop<[], "get-rest">, never>>,
+  Expect<Equal<Array.Pop<[1,2,3], "get-pop-element">, 3>>,
+  Expect<Equal<Array.Pop<[1], "get-pop-element">, 1>>,
+  Expect<Equal<Array.Pop<[], "get-pop-element">, never>>,
 
   // Array.Fill
   Expect<Equal<Array.Fill<[1,2,3], "3">, ["3","3","3"]>>,

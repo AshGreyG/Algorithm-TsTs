@@ -37,6 +37,12 @@
 + Add a new method of `Array` namespace:
   + `Array.Join<Arr, Sep>`
 
+### 2025-06-28 (feature/array-methods → main)
+
++ Add two new methods of `Array` namespace:
+  + `Array.Pop<Arr, Mode>`
+  + `Array.Push<Arr, Element>`
+
 ## ⚡ Improvements
 
 ## 🐦‍🔥 No longer broken

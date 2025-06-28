@@ -274,12 +274,63 @@ export type Join<
   Arr extends Primitive[], 
   Sep extends string = ",",
   Result extends string = "",
-  Count extends 0[] = [],
+  Count extends 0[] = []
 > = Arr extends [infer F extends Primitive, ...infer Rest extends Primitive[]]
   ? Integer.Eq<Count["length"], 0> extends true
     ? Join<Rest, Sep, `${F}`, [...Count, 0]>
     : Join<Rest, Sep, `${Result}${Sep}${F}`, [...Count, 0]>
   : Result;
+
+/**
+ * This method is like `Array.prototype.pop`, but it cannot change the array itself
+ * (types are not references). So we can use `Mode` to determine whether this method
+ * returns the rest part or returns the popped element.
+ * 
+ * @param Arr The array to be popped.
+ * @param Mode If you choose mode `"get-rest"`, this method will return the rest
+ * part of array. If you choose mode `"get-pop-element"`, this method will return the
+ * popped element. Default to `"get-rest"`
+ * @returns When `Mode` is `"get-rest"`, returns the rest part. When `Mode` is `"get-
+ * pop-element"`, returns the popped element.
+ * 
+ * @example
+ * // "get-rest" mode
+ * type Pop1 = Array.Pop<[1, 2, 3]>;        // [1, 2]
+ * type Pop2 = Array.Pop<[1], "get-rest">;  // []
+ * type Pop3 = Array.Pop<[], "get-rest">;   // never
+ * 
+ * // "get-pop-element" mode
+ * type Pop4 = Array.Pop<[1, 2, 3], "get-pop-element">; // 3
+ * type Pop5 = Array.Pop<[1], "get-pop-element">;       // 1
+ * type Pop6 = Array.Pop<[], "get-pop-element">;        // never
+ */
+export type Pop<
+  Arr extends unknown[],
+  Mode extends 
+    | "get-rest"
+    | "get-pop-element"
+    = "get-rest"
+> = Mode extends "get-rest" 
+  ? Arr extends [...infer Rest, infer PopElement]
+    ? Rest
+    : never
+  : Arr extends [...infer Rest, infer PopElement]
+    ? PopElement
+    : never;
+
+/**
+ * This method is like `Array.prototype.push`, it returns the new array that
+ * has been pushed the new element.
+ * 
+ * @param Arr The array to be pushed.
+ * @param E The new element to be pushed into the `Arr`.
+ * @returns The new array.
+ * 
+ * @example
+ * type Push1 = Array.Push<[1, 2, 3], "1">; // [1, 2, 3, "1"]
+ * type Push2 = Array.Push<[], 1>;          // [1]
+ */
+export type Push<Arr extends unknown[], E extends unknown> = [...Arr, E];
 
 }
 
