@@ -41,7 +41,7 @@
 
 + Add two new methods of `Array` namespace:
   + `Array.Pop<Arr, Mode>`
-  + `Array.Push<Arr>`
+  + `Array.Push<Arr, Element>`
 
 ## ⚡ Improvements
 
