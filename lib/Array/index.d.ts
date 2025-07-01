@@ -261,6 +261,31 @@ export type IndexOf<
   : -1;
 
 /**
+ * This method returns the last encounter index of element `T` in array `Arr`.
+ * 
+ * @param Arr The array to be checked.
+ * @param T The element to check the last encounter index.
+ * @param Count Middle variable to store the scanning state.
+ * @returns The last encounter index of element `T` in array `Arr`.
+ * 
+ * @example
+ * type LastIndex1 = Array.LastIndexOf<[1, 2, 1, 22, 3], 1>;  // 2
+ * type LastIndex2 = Array.LastIndexOf<[], 1>;                // -1
+ * type LastIndex3 = Array.LastIndexOf<[1], 1>;               // 0
+ */
+export type LastIndexOf<
+  Arr extends unknown[],
+  T extends unknown,
+  Count extends 0[] = CreateArrayFromLength<Arr["length"], 0>
+> = Arr extends [...infer Rest, infer L]
+  ? Equal<L, T> extends true
+    ? Integer.Dec<Count["length"]>
+    : Count extends [...infer RestCount extends 0[], 0]
+      ? LastIndexOf<Rest, T, RestCount>
+      : -1
+  : -1;
+
+/**
  * This method is like `Array.prototype.join`, it creates and returns a new string by 
  * concatenating all of the elements in this array, separated by commas or a specified 
  * separator string.

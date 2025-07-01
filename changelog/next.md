@@ -43,6 +43,11 @@
   + `Array.Pop<Arr, Mode>`
   + `Array.Push<Arr, Element>`
 
+### 2025-07-01 (feature/array-methods → main)
+
++ Add a new method of `Array` namespace:
+  + `Array.LastIndexOf<Arr, T>`
+
 ## ⚡ Improvements
 
 ## 🐦‍🔥 No longer broken
