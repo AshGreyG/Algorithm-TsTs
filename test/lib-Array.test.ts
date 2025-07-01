@@ -94,5 +94,7 @@ type CaseLibArray = [
   Expect<Equal<Array.LastIndexOf<[], 1>, -1>>,
   Expect<Equal<Array.LastIndexOf<[1,2,3], 0>, -1>>,
   Expect<Equal<Array.LastIndexOf<[[],[[]],[],[]], [[]]>, 1>>,
+  Expect<Equal<Array.LastIndexOf<[()=>{},(a:string)=>{},(b:string)=>{},()=>{}], (c:string)=>{}>, 2>>,
+  Expect<Equal<Array.LastIndexOf<[{a:string},{},{b:string}], {}>, 1>>,
 
 ]
