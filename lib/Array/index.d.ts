@@ -25,7 +25,7 @@ declare namespace Array {
 export type CreateArrayFromLength<
   L extends number, 
   T extends unknown = undefined, 
-  Count extends T[] = []
+  Count extends unknown[] = []
 > = Integer.IsNegative<L> extends true
   ? []
   : Count["length"] extends L
@@ -53,7 +53,7 @@ export type CreateArrayFromLength<
 export type At<
   Arr extends unknown[],
   N extends number, 
-  Count extends unknown[] = []
+  Count extends 0[] = []
 > = Integer.Eq<Arr["length"], 0> extends true
   ? never
   : Integer.IsNegative<N> extends true
@@ -65,7 +65,7 @@ export type At<
         ? F
         : never
       : Arr extends [infer F, ...infer Rest]
-        ? At<Rest, N, [...Count, F]>
+        ? At<Rest, N, [...Count, 0]>
         : never;
 
 /**
