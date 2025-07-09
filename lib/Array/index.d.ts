@@ -392,10 +392,10 @@ export type Reverse<Arr extends unknown[], Result extends unknown[] = []>
  * type Shift2 = Array.Shift<[1], "get-rest">;  // []
  * type Shift3 = Array.Shift<[], "get-rest">;   // never
  * 
- * // "get-pop-element" mode
- * type Pop4 = Array.Pop<[1, 2, 3], "get-pop-element">; // 3
- * type Pop5 = Array.Pop<[1], "get-pop-element">;       // 1
- * type Pop6 = Array.Pop<[], "get-pop-element">;        // never
+ * // "get-shift-element" mode
+ * type Shift4 = Array.Shift<[1, 2, 3], "get-shift-element">; // 1
+ * type Shift5 = Array.Shift<[1], "get-shift-element">;       // 1
+ * type Shift6 = Array.Shift<[], "get-shift-element">;        // never
  */
 export type Shift<
   Arr extends unknown[],
