@@ -374,6 +374,43 @@ export type Reverse<Arr extends unknown[], Result extends unknown[] = []>
     ? Reverse<Rest, [F, ...Result]>
     : Result;
 
+/**
+ * This method is like `Array.prototype.shift`, but it cannot change the array itself
+ * (types are not references). So we can use `Mode` to determine whether this method
+ * returns the rest part or returns the shifted element.
+ * 
+ * @param Arr The array to be shifted.
+ * @param Mode If you choose mode `"get-rest"`, this method will return the rest
+ * part of array. If you choose mode `"get-shift-element"`, this method will return the
+ * shifted element. Default to `"get-rest"`
+ * @returns When `Mode` is `"get-rest"`, returns the rest part. When `Mode` is `"get-
+ * shift-element"`, returns the shifted element.
+ * 
+ * @example
+ * // "get-rest" mode
+ * type Shift1 = Array.Shift<[1, 2, 3]>;        // [2, 3]
+ * type Shift2 = Array.Shift<[1], "get-rest">;  // []
+ * type Shift3 = Array.Shift<[], "get-rest">;   // never
+ * 
+ * // "get-pop-element" mode
+ * type Pop4 = Array.Pop<[1, 2, 3], "get-pop-element">; // 3
+ * type Pop5 = Array.Pop<[1], "get-pop-element">;       // 1
+ * type Pop6 = Array.Pop<[], "get-pop-element">;        // never
+ */
+export type Shift<
+  Arr extends unknown[],
+  Mode extends 
+    | "get-rest"
+    | "get-shift-element"
+    = "get-rest"
+> = Mode extends "get-rest" 
+  ? Arr extends [infer ShiftElement, ...infer Rest]
+    ? Rest
+    : never
+  : Arr extends [infer ShiftElement, ...infer Rest]
+    ? ShiftElement
+    : never;
+
 }
 
 export default Array;
