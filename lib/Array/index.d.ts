@@ -358,7 +358,7 @@ export type Pop<
 export type Push<Arr extends unknown[], E extends unknown> = [...Arr, E];
 
 /**
- * This method is like `Array.prototype.revers`, it reverses the array.
+ * This method is like `Array.prototype.reverse`, it reverses the array.
  * 
  * @param Arr The array to be reversed.
  * @param Result The array to store the final reversed result in the process
