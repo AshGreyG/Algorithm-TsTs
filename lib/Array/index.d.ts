@@ -357,6 +357,23 @@ export type Pop<
  */
 export type Push<Arr extends unknown[], E extends unknown> = [...Arr, E];
 
+/**
+ * This method is like `Array.prototype.revers`, it reverses the array.
+ * 
+ * @param Arr The array to be reversed.
+ * @param Result The array to store the final reversed result in the process
+ * procedure.
+ * @returns The reversed array.
+ * 
+ * @example
+ * type Reverse1 = Array.Reverse<[1, 2, 3]>;  // [3, 2, 1]
+ * type Reverse2 = Array.Reverse<[]>;         // []
+ */
+export type Reverse<Arr extends unknown[], Result extends unknown[] = []>
+  = Arr extends [infer F, ...infer Rest]
+    ? Reverse<Rest, [F, ...Result]>
+    : Result;
+
 }
 
 export default Array;
