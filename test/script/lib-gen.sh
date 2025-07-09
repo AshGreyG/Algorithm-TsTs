@@ -54,7 +54,7 @@ declare -A test_cases=(
 
   ["Boolean.And"]="false‖false∷false false‖true∷false true‖false∷false true‖true∷true"
   ["Boolean.Or"]="false‖false∷false false‖true∷true true‖false∷true true‖true∷true"
-  ["Boolean.Nor"]="false∷true true∷false"
+  ["Boolean.Not"]="false∷true true∷false"
   ["Boolean.Nand"]="false‖false∷true false‖true∷true true‖false∷true true‖true∷false"
   ["Boolean.Nor"]="false‖false∷true false‖true∷false true‖false∷false true‖true∷false"
   ["Boolean.MultipleAnd"]="[true,true,true]∷true [true,false,true]∷false [false,false,false]∷false"

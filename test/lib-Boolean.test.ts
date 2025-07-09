@@ -25,6 +25,10 @@ type CaseLibBoolean = [
   Expect<Equal<Boolean.And<true, false>, false>>,
   Expect<Equal<Boolean.And<true, true>, true>>,
 
+  // Boolean.Not
+  Expect<Equal<Boolean.Not<false>, true>>,
+  Expect<Equal<Boolean.Not<true>, false>>,
+
   // Boolean.Nor
   Expect<Equal<Boolean.Nor<false, false>, true>>,
   Expect<Equal<Boolean.Nor<false, true>, false>>,
