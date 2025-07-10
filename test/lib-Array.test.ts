@@ -22,6 +22,11 @@ type CaseLibArray = [
   Expect<Equal<Array.Unshift<[], []>, [[]]>>,
   Expect<Equal<Array.Unshift<[1], []>, [[],1]>>,
   Expect<Equal<Array.Unshift<[], 1>, [1]>>,
+  Expect<Equal<Array.Unshift<[{a:1},{b:2}], {c:3}>, [{c:3},{a:1},{b:2}]>>,
+  Expect<Equal<Array.Unshift<[[1,2],[3,4]], [5,6]>, [[5,6],[1,2],[3,4]]>>,
+  Expect<Equal<Array.Unshift<[1|2,3], 4|5>, [4|5,1|2,3]>>,
+  Expect<Equal<Array.Unshift<[], {a:string,b:number}>, [{a:string,b:number}]>>,
+  Expect<Equal<Array.Unshift<[{x:number}], {y:boolean}>, [{y:boolean},{x:number}]>>,
 
   // Array.MultipleConcat
   Expect<Equal<Array.MultipleConcat<[[1,2,3],[4,2,3],[undefined,true]]>, [1,2,3,4,2,3,undefined,true]>>,
