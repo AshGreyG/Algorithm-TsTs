@@ -411,6 +411,20 @@ export type Shift<
     ? ShiftElement
     : never;
 
+/**
+ * This method is like `Array.prototype.unshift`, it returns the new array that
+ * has been unshifted (which means pushing at the first) the new element.
+ * 
+ * @param Arr The array to be unshifted.
+ * @param E The new element to be unshifted into the `Arr`.
+ * @returns The new array.
+ * 
+ * @example
+ * type Unshift1 = Array.Unshift<[1, 2, 3], "1">; // ["1", 1, 2, 3]
+ * type Unshift2 = Array.Unshift<[], 1>;          // [1]
+ */
+export type Unshift<Arr extends unknown[], E extends unknown> = [E, ...Arr];
+
 }
 
 export default Array;

@@ -17,6 +17,17 @@ type CaseLibArray = [
   Expect<Equal<Array.CreateArrayFromLength<0>, []>>,
   Expect<Equal<Array.CreateArrayFromLength<-1>, []>>,
 
+  // Array.Unshift
+  Expect<Equal<Array.Unshift<[1,2,3], 4>, [4,1,2,3]>>,
+  Expect<Equal<Array.Unshift<[], []>, [[]]>>,
+  Expect<Equal<Array.Unshift<[1], []>, [[],1]>>,
+  Expect<Equal<Array.Unshift<[], 1>, [1]>>,
+  Expect<Equal<Array.Unshift<[{a:1},{b:2}], {c:3}>, [{c:3},{a:1},{b:2}]>>,
+  Expect<Equal<Array.Unshift<[[1,2],[3,4]], [5,6]>, [[5,6],[1,2],[3,4]]>>,
+  Expect<Equal<Array.Unshift<[1|2,3], 4|5>, [4|5,1|2,3]>>,
+  Expect<Equal<Array.Unshift<[], {a:string,b:number}>, [{a:string,b:number}]>>,
+  Expect<Equal<Array.Unshift<[{x:number}], {y:boolean}>, [{y:boolean},{x:number}]>>,
+
   // Array.MultipleConcat
   Expect<Equal<Array.MultipleConcat<[[1,2,3],[4,2,3],[undefined,true]]>, [1,2,3,4,2,3,undefined,true]>>,
   Expect<Equal<Array.MultipleConcat<[[],[1],[],[2]]>, [1,2]>>,
@@ -50,6 +61,13 @@ type CaseLibArray = [
   Expect<Equal<Array.IndexOf<[], 0>, -1>>,
   Expect<Equal<Array.IndexOf<[1,2,3], 4>, -1>>,
   Expect<Equal<Array.IndexOf<[1,2,1], 1>, 0>>,
+
+  // Array.Shift
+  Expect<Equal<Array.Shift<[1,2,3]>, [2,3]>>,
+  Expect<Equal<Array.Shift<["1"]>, []>>,
+  Expect<Equal<Array.Shift<[], "get-rest">, never>>,
+  Expect<Equal<Array.Shift<[1,2,3], "get-shift-element">, 1>>,
+  Expect<Equal<Array.Shift<["1"], "get-shift-element">, "1">>,
 
   // Array.IsFlatten
   Expect<Equal<Array.IsFlatten<[1,2,3]>, true>>,
