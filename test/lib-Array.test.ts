@@ -51,6 +51,13 @@ type CaseLibArray = [
   Expect<Equal<Array.IndexOf<[1,2,3], 4>, -1>>,
   Expect<Equal<Array.IndexOf<[1,2,1], 1>, 0>>,
 
+  // Array.Shift
+  Expect<Equal<Array.Shift<[1,2,3]>, [2,3]>>,
+  Expect<Equal<Array.Shift<["1"]>, []>>,
+  Expect<Equal<Array.Shift<[], "get-rest">, never>>,
+  Expect<Equal<Array.Shift<[1,2,3], "get-shift-element">, 1>>,
+  Expect<Equal<Array.Shift<["1"], "get-shift-element">, "1">>,
+
   // Array.IsFlatten
   Expect<Equal<Array.IsFlatten<[1,2,3]>, true>>,
   Expect<Equal<Array.IsFlatten<[]>, true>>,
