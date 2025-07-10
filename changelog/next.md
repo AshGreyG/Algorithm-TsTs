@@ -48,11 +48,16 @@
 + Add a new method of `Array` namespace:
   + `Array.LastIndexOf<Arr, T>`
 
-### 2025-07--09 (feature/array-methods → main)
+### 2025-07-09 (feature/array-methods → main)
 
 + Add two new methods of `Array` namespace:
   + `Array.Reverse<Arr>`
   + `Array.Shift<Arr, Mode>`
+
+### 2025-07-10 (feature/array-methods → main)
+
++ Add a new method of `Array` namespace:
+  + `Array.Unshift<Arr, E>`
 
 ## ⚡ Improvements
 
