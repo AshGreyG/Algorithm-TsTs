@@ -38,7 +38,7 @@ export type CreateArrayFromLength<
  * 
  * @param Arr The array to be got element.
  * @param N The index of element.
- * @param Count The type to accumulate the type of element of `Array` as its element to
+ * @param Count The type to accumulate 0 as its element to
  * return the final result when the length of `Count` is equal to `N`.
  * @returns Returns the element of `Arr` at index `N`, if the index is negative, it will
  * come back from the end of the array. If the index is greater than the length of `Arr`,
@@ -424,6 +424,63 @@ export type Shift<
  * type Unshift2 = Array.Unshift<[], 1>;          // [1]
  */
 export type Unshift<Arr extends unknown[], E extends unknown> = [E, ...Arr];
+
+/**
+ * This method is like `Array.prototype.slice`, it returns the subarray of given
+ * array. When `Start` and `End` are negative, they will turn back from the tail
+ * of array.
+ * 
+ * @param Arr The array to be sliced.
+ * @param Start The start index of subarray.
+ * @param End The end index of subarray.
+ * @param Result The array to store the final subarray result in the process
+ * procedure.
+ * @param Count The type to accumulate 0 as its element to
+ * return the final result when the length of `Count` is equal to `Arr["length"]`.
+ * @returns The subarray in [Start, End].
+ * 
+ * @example
+ * // No index parameter
+ * type Slice1 = Array.Slice<[1, 2, 3]>;  // [1, 2, 3]
+ * type Slice2 = Array.Slice<[]>;         // []
+ * type Slice3 = Array.Slice<[[], [[]]]>; // [[], [[]]]
+ * 
+ * // One index parameter
+ * type Slice4 = Array.Slice<[1, 2, 0, 3], 1>;  // [2, 0, 3]
+ * type Slice5 = Array.Slice<[], 4>;            // []
+ * type Slice6 = Array.Slice<[1 | 2 | 3], 0>;   // [1 | 2 | 3]
+ * type Slice7 = Array.Slice<[1, 2, 3], 2>;     // [3]
+ * 
+ * // Two index parameters
+ * type Slice8 = Array.Slice<[1, 2, 0, 3], 1, 2>; // [2]
+ * type Slice9 = Array.Slice<[1, 2, 0, 3], 1, 9>; // [2, 0, 3]
+ * type Slice10 = Array.Slice<[], 1, 2>;          // []
+ * 
+ * // Negative index parameters
+ * type Slice11 = Array.Slice<[1, 2, 3], -2>;     // [2, 3]
+ * type Slice12 = Array.Slice<[1, 2, 3], 0, -1>;  // [1, 2]
+ */
+export type Slice<
+  Arr extends unknown[],
+  Start extends number = 0,
+  End extends number = Arr["length"],
+  Result extends unknown[] = [],
+  Count extends 0[] = []
+> = Integer.IsNegative<Start> extends true
+  ? Integer.Add<Start, Arr["length"]> extends number
+    ? Slice<Arr, Integer.Add<Start, Arr["length"]>, End, Result, Count>
+    : never
+  : Integer.IsNegative<End> extends true
+    ? Integer.Add<End, Arr["length"]> extends number
+      ? Slice<Arr, Start, Integer.Add<End, Arr["length"]>, Result, Count>
+      : never
+    : Arr extends [infer F, ...infer Rest]
+  ? Integer.GreaterEq<Count["length"], Start> extends true
+    ? Integer.Lower<Count["length"], End> extends true
+      ? Slice<Rest, Start, End, [...Result, F], [...Count, 0]>
+      : Slice<Rest, Start, End, Result, [...Count, 0]>
+    : Slice<Rest, Start, End, Result, [...Count, 0]>
+  : Result;
 
 }
 
