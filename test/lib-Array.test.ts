@@ -107,6 +107,19 @@ type CaseLibArray = [
   Expect<Equal<Array.At<[], -1>, never>>,
   Expect<Equal<Array.At<[], 0>, never>>,
 
+  // Array.Slice
+  Expect<Equal<Array.Slice<[1,2,3]>, [1,2,3]>>,
+  Expect<Equal<Array.Slice<[]>, []>>,
+  Expect<Equal<Array.Slice<[[],[[]]]>, [[],[[]]]>>,
+  Expect<Equal<Array.Slice<[1,2,0,3], 1>, [2,0,3]>>,
+  Expect<Equal<Array.Slice<[], 4>, []>>,
+  Expect<Equal<Array.Slice<[1|2|3], 0>, [1|2|3]>>,
+  Expect<Equal<Array.Slice<[1,2,3], 2>, [3]>>,
+  Expect<Equal<Array.Slice<[1,2,0,3], 1, 2>, [2]>>,
+  Expect<Equal<Array.Slice<[1,2,0,3], 1, 9>, [2,0,3]>>,
+  Expect<Equal<Array.Slice<[1,2,3], -2>, [2,3]>>,
+  Expect<Equal<Array.Slice<[1,2,3], 0, -1>, [1,2]>>,
+
   // Array.LastIndexOf
   Expect<Equal<Array.LastIndexOf<[1,2,1,2,1,3,4], 1>, 4>>,
   Expect<Equal<Array.LastIndexOf<[], 1>, -1>>,
